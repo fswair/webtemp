@@ -12,20 +12,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay">
-
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:background="?attr/colorPrimary"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
-        </com.google.android.material.appbar.AppBarLayout>
-
+        <include layout="@layout/toolbar_main" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -86,9 +73,9 @@
                 android:background="@color/navibackground"
                 android:clipToPadding="true"
                 android:elevation="15dp"
-                app:labelVisibilityMode="labeled"
                 app:itemIconTint="@drawable/bottom_nav_colors"
                 app:itemTextColor="@drawable/bottom_nav_colors"
+                app:labelVisibilityMode="labeled"
                 app:menu="@menu/bottom_navigation_menu" />
 
         </LinearLayout>

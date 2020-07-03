@@ -1,4 +1,6 @@
-<manifest package="com.induiduel.webview">
+<manifest xmlns:tools="http://schemas.android.com/tools"
+    package="com.induiduel.webview"
+    tools:ignore="ExtraText">
 
     /
 </manifest>
