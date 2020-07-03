@@ -14,9 +14,9 @@
     <string name="url5" translatable="false">https://google.com/</string>
 
     <string name="nav1">Main Page</string>
-    <string name="nav2">Folk Notes</string>
-    <string name="nav3">Binding Notes</string>
-    <string name="nav4">Note request</string>
+    <string name="nav2">Second</string>
+    <string name="nav3">Cool</string>
+    <string name="nav4">Repos</string>
     <string name="nav5">Settings</string>
 
 
