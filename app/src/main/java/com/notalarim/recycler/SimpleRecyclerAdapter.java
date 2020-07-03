@@ -25,7 +25,6 @@ public class SimpleRecyclerAdapter extends RecyclerView.Adapter<SimpleRecyclerAd
 
     List<Person> list_person;
     CustomItemClickListener listener;
-
     public SimpleRecyclerAdapter(List<Person> list_person, CustomItemClickListener listener) {
 
         this.list_person = list_person;
