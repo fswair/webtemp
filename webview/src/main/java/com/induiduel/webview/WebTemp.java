@@ -25,7 +25,6 @@ public class WebTemp extends Application {
         super.onCreate();
         WebTemp.context = getApplicationContext();
     }
-
     public static Context getAppContext() {
         return WebTemp.context;
     }
