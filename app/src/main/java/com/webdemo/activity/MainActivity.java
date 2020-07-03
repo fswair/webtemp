@@ -1,4 +1,4 @@
-package com.notalarim.activity;
+package com.webdemo.activity;
 
 
 import android.Manifest;
@@ -66,11 +66,11 @@ import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.induiduel.webview.WebTemp;
-import com.notalarim.R;
-import com.notalarim.listeners.CustomItemClickListener;
-import com.notalarim.recycler.Person;
-import com.notalarim.recycler.SimpleRecyclerAdapter;
-import com.notalarim.request.RequestNetwork;
+import com.webdemo.R;
+import com.webdemo.listeners.CustomItemClickListener;
+import com.webdemo.recycler.Person;
+import com.webdemo.recycler.SimpleRecyclerAdapter;
+import com.webdemo.request.RequestNetwork;
 
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;

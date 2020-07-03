@@ -1,4 +1,4 @@
-package com.notalarim.recycler;
+package com.webdemo.recycler;
 
 
 import android.view.LayoutInflater;
@@ -10,8 +10,8 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.notalarim.R;
-import com.notalarim.listeners.CustomItemClickListener;
+import com.webdemo.R;
+import com.webdemo.listeners.CustomItemClickListener;
 
 import org.jetbrains.annotations.NotNull;
 

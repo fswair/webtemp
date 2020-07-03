@@ -1,4 +1,4 @@
-package com.notalarim.activity;
+package com.webdemo.activity;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
@@ -16,7 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.notalarim.R;
+import com.webdemo.R;
 
 import java.util.Timer;
 import java.util.TimerTask;

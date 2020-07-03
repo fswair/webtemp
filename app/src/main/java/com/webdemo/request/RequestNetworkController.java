@@ -1,4 +1,4 @@
-package com.notalarim.request;
+package com.webdemo.request;
 
 import com.google.gson.Gson;
 

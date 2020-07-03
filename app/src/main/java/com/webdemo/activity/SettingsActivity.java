@@ -1,4 +1,4 @@
-package com.notalarim.activity;
+package com.webdemo.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -20,7 +20,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
-import com.notalarim.R;
+import com.webdemo.R;
 
 
 /**
