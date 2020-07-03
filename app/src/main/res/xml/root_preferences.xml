@@ -1,0 +1,96 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="Genel Ayarlar">
+
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:iconSpaceReserved="false"
+            app:isPreferenceVisible="false"
+            app:key="jsdata"
+            app:summaryOff="@string/jsoff"
+            app:title="JavaScript" />
+
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:dependency="jsdata"
+            app:iconSpaceReserved="false"
+            app:isPreferenceVisible="false"
+            app:key="formdata"
+            app:title="@string/sync_title" />
+
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:dependency="jsdata"
+            app:iconSpaceReserved="false"
+            app:isPreferenceVisible="false"
+            app:key="downloaddata"
+            app:summaryOff="@string/attachment_summary_off"
+            app:summaryOn="@string/attachment_summary_on"
+            app:title="@string/attachment_title" />
+
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:dependency="jsdata"
+            app:iconSpaceReserved="false"
+            app:isPreferenceVisible="false"
+            app:key="uploaddata"
+            app:summaryOff="@string/offupload"
+            app:summaryOn="@string/json"
+            app:title="@string/uploadd" />
+
+
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:iconSpaceReserved="false"
+            app:key="cook"
+            app:title="@string/cook" />
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:iconSpaceReserved="false"
+            app:key="aca"
+            app:title="@string/aca" />
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:iconSpaceReserved="false"
+            app:key="afa"
+            app:title="@string/afa" />
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:iconSpaceReserved="false"
+            app:key="cache"
+            app:title="@string/cache" />
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:iconSpaceReserved="false"
+            app:key="zoom"
+            app:summary="@string/rest"
+            app:title="@string/zoom" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/morething">
+        <Preference
+            app:iconSpaceReserved="false"
+            app:isPreferenceVisible="false"
+            app:title="@string/deva">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/developacc" />
+        </Preference>
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="geri"
+            app:title="Geri Bildirim" />
+
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="gizlilik"
+            app:title="Gizlilik Politikası" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

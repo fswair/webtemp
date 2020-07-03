@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dosyagezgini">Dosya Gezgini</string>
+    <string name="dosyasecici">Dosya Seçici</string>
+    <string name="dosyaerror">Dosya Seçici Açılamıyor</string>
+    <string name="indstarted">İndirme Başladı..</string>
+    <string name="indfinish">İndirme Sonlandı!</string>
+    <string name="errorcode">\"Hata Kodu: \"</string>
+    <string name="description">\"Açıklama: \"</string>
+    <string name="sync_title">Şifreleri Güncelle</string>
+    <string name="attachment_title">Dosyaları İndir</string>
+    <string name="attachment_summary_on">Tüm indirmelere izin verilir</string>
+    <string name="attachment_summary_off">İndirmelere izin verilmiyor</string>
+    <string name="jsoff">Bir çok işlem gerçekleşmez</string>
+    <string name="json">Tüm yüklemelere izin verilir</string>
+    <string name="uploadd">Dosyaları Yükle</string>
+    <string name="offupload">Yüklemelere izin verilmiyor</string>
+    <string name="cook">Çerezlere İzin Ver</string>
+    <string name="aca">İçerik Erişimine İzin Ver</string>
+    <string name="afa">Bellek Erişimine İzin Ver</string>
+    <string name="cache">Önbelleğe İzin Ver</string>
+    <string name="zoom">Yakınlaştırmaya İzin Ver</string>
+    <string name="hakkımda">Android WebView, Chrome tarafından desteklenen ve Android uygulamalarının web içeriğini görüntülemesine olanak sağlayan bir sistem bileşenidir. Bu bileşen, cihazınızda önceden yüklenmiştir ve en son güvenlik güncellemelerinin ve diğer hata düzeltmelerinin bulunduğundan emin olmak için güncel tutulmalıdır.</string>
+    <string name="deva">Geliştrici Hesabı</string>
+    <string name="morething">Daha Fazla</string>
+    <string name="opensettingsper">Ayarlardan izinleri açın</string>
+    <string name="chooseemail">Email uygulaması seçin</string>
+    <string name="nav2">Türkü Notaları</string>
+    <string name="nav1">Anasayfa</string>
+    <string name="rest">Yeniden başlatma gerekebilir</string>
+    <string name="nav5">Ayarlar</string>
+    <string name="nav3">Bağlama Notaları</string>
+    <string name="nav4">Nota istek</string>
+</resources>

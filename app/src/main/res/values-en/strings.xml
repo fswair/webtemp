@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dosyagezgini">File Explorer</string>
+    <string name="dosyasecici">File Chooser</string>
+    <string name="dosyaerror">File Chooser can\'t open</string>
+    <string name="indstarted">Download has started</string>
+    <string name="indfinish">Download Finished!</string>
+    <string name="errorcode">"Error Code: "</string>
+    <string name="description">"Description: "</string>
+    <string name="sync_title">Sync Passwords</string>
+    <string name="attachment_title">Download Files</string>
+    <string name="attachment_summary_on">Allows all dowload operations</string>
+    <string name="attachment_summary_off">Doesn\'t allows to downloads</string>
+    <string name="jsoff">Doesn\'t work straight</string>
+    <string name="offupload">Doesn\'t allows to uploads</string>
+    <string name="uploadd">Upload Files</string>
+    <string name="json">Allows all upload progress</string>
+    <string name="cook">Allow Cookies</string>
+    <string name="aca">Allow Content Access</string>
+    <string name="afa">Allow File Access</string>
+    <string name="cache">Allow Cache</string>
+    <string name="zoom">Allow Zoom</string>
+    <string name="hakkımda">This is what you need to know</string>
+    <string name="morething">More</string>
+    <string name="deva">Developer Account</string>
+    <string name="opensettingsper">Open Settings</string>
+    <string name="chooseemail">Choose an email application</string>
+    <string name="nav1">Main Page</string>
+    <string name="nav2">Folk Notes</string>
+    <string name="nav3">Binding Notes</string>
+    <string name="rest">May need to restart</string>
+    <string name="nav5">Settings</string>
+    <string name="nav4">Note request</string>
+</resources>
