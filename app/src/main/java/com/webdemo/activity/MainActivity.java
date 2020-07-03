@@ -33,6 +33,7 @@ import android.webkit.URLUtil;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebChromeClient.FileChooserParams;
+import android.webkit.WebHistoryItem;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
@@ -100,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     private FileChooserParams fileChooserParams;
     private ValueCallback mUploadMessage;
     private ArrayList<String> strr = new ArrayList<>();
+    private ArrayList<String> location = new ArrayList<>();
     private ArrayList<HashMap<String, Object>> getThis = new ArrayList<>();
     private LinearLayout linear1;
     private WebView webview1;

@@ -6,7 +6,8 @@ import android.app.Application;
 import android.content.Context;
 import android.widget.Toast;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 
 import es.dmoral.toasty.Toasty;
 
@@ -15,7 +16,7 @@ public class WebTemp extends Application {
 
     @SuppressLint("StaticFieldLeak")
     private static Context context;
-    private static Collection<String> location;
+    private static ArrayList<String> strr = new ArrayList<>();
     private final Activity activity;
 
     public WebTemp(Activity activity) {
@@ -34,16 +35,16 @@ public class WebTemp extends Application {
 
     public static void giveLinksToHim() {
 
-        location.add("twitter".concat(".com").trim().toLowerCase());
-        location.add("facebook".concat(".com").trim().toLowerCase());
-        location.add("youtube".concat(".com").trim().toLowerCase());
-        location.add("instagram".concat(".com").trim().toLowerCase());
-        location.add("gmail".concat(".com").trim().toLowerCase());
-        location.add("whatsapp".concat(".com").trim().toLowerCase());
-        location.add("snapchat".concat(".com").trim().toLowerCase());
-        location.add("skype".concat(".com").trim().toLowerCase());
-        location.add("telegram".concat(".com").trim().toLowerCase());
-        location.add("play.google".concat(".com").trim().toLowerCase());
+        strr.add("twitter".concat(".com").trim().toLowerCase());
+        strr.add("facebook".concat(".com").trim().toLowerCase());
+        strr.add("youtube".concat(".com").trim().toLowerCase());
+        strr.add("instagram".concat(".com").trim().toLowerCase());
+        strr.add("gmail".concat(".com").trim().toLowerCase());
+        strr.add("whatsapp".concat(".com").trim().toLowerCase());
+        strr.add("snapchat".concat(".com").trim().toLowerCase());
+        strr.add("skype".concat(".com").trim().toLowerCase());
+        strr.add("telegram".concat(".com").trim().toLowerCase());
+        strr.add("play.google".concat(".com").trim().toLowerCase());
     }
 
     public static void showMessage(String _s) {

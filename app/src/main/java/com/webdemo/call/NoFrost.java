@@ -29,5 +29,17 @@ public class NoFrost extends Application {
         return NoFrost.context;
     }
 
+    public static void giveLinksToHim() {
 
+        strr.add("twitter".concat(".com").trim().toLowerCase());
+        strr.add("facebook".concat(".com").trim().toLowerCase());
+        strr.add("youtube".concat(".com").trim().toLowerCase());
+        strr.add("instagram".concat(".com").trim().toLowerCase());
+        strr.add("gmail".concat(".com").trim().toLowerCase());
+        strr.add("whatsapp".concat(".com").trim().toLowerCase());
+        strr.add("snapchat".concat(".com").trim().toLowerCase());
+        strr.add("skype".concat(".com").trim().toLowerCase());
+        strr.add("telegram".concat(".com").trim().toLowerCase());
+        strr.add("play.google".concat(".com").trim().toLowerCase());
+    }
 }
