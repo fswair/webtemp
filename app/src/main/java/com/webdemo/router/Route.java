@@ -31,7 +31,7 @@ public class Route extends Application {
         return Route.context;
     }
 
-    public void linkRoute(String url, String sheme) {
+    public static void linkRoute(String url, String sheme) {
         if (Uri.parse(url).getScheme().equals(sheme)) {
             try {
                 // Google Play will start

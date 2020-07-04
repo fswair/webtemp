@@ -73,6 +73,7 @@ import com.webdemo.recycler.Person;
 import com.webdemo.recycler.SimpleRecyclerAdapter;
 import com.webdemo.request.RequestNetwork;
 import com.webdemo.websettings.DarkMode;
+import com.webdemo.websettings.ImageDownloader;
 
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
@@ -379,6 +380,9 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     @Override
     public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
         super.onCreateContextMenu(contextMenu, view, contextMenuInfo);
+
+        ImageDownloader.down(webview1, contextMenu, view, contextMenuInfo);
+
 
     }
 

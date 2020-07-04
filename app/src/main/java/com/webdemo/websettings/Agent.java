@@ -26,7 +26,7 @@ public class Agent extends Application {
         return Agent.context;
     }
 
-    public void webAgent(WebView webView) {
+    public static void webAgent(WebView webView) {
         String userAgent = System.getProperty("http.agent");
         webView.getSettings().setUserAgentString(userAgent);
     }

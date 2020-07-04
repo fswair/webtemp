@@ -26,20 +26,20 @@ public class Catcher extends Application {
         return Catcher.context;
     }
 
-    public void catchLink(String url) {
+    public static void catchLink(String url) {
         if (isLinkCatched(url)) {
             catchedOut();
         }
     }
 
 
-    public boolean isLinkCatched(String url) {
+    public static boolean isLinkCatched(String url) {
 
         return true;
     }
 
 
-    public void catchedOut() {
+    public static void catchedOut() {
 
     }
 }
