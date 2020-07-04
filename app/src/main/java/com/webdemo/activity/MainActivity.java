@@ -66,8 +66,8 @@ import com.google.android.gms.ads.reward.RewardedVideoAd;
 import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
-import com.induiduel.webview.WebTemp;
 import com.webdemo.R;
+import com.webdemo.call.NoFrost;
 import com.webdemo.listeners.CustomItemClickListener;
 import com.webdemo.recycler.Person;
 import com.webdemo.recycler.SimpleRecyclerAdapter;
@@ -238,7 +238,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             @Override
             public void onAdFailedToLoad(int errorCode) {
                 // Code to be executed when an ad request fails.
-                WebTemp.showError("Hata: " + errorCode);
+                NoFrost.showError("Hata: " + errorCode);
             }
 
             @Override
@@ -426,7 +426,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     private void _onCreate1() {
         _ui();
         _swipeToRefreshWeb(webview1, linear1);
-        WebTemp.giveLinksToHim();
+        NoFrost.giveLinksToHim();
         onLogic();
 
         bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
@@ -482,7 +482,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                     startActivityForResult(intent, REQUEST_SELECT_FILE);
                 } catch (ActivityNotFoundException e) {
                     uploadMessage = null;
-                    WebTemp.showError(getString(R.string.dosyaerror));
+                    NoFrost.showError(getString(R.string.dosyaerror));
                     return false;
                 }
                 return true;
@@ -570,7 +570,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
                 } catch (Exception e) {
 
-                    WebTemp.showMessage(e.toString());
+                    NoFrost.showMessage(e.toString());
 
                 }
             }
@@ -608,18 +608,18 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                         errorbind.setProgress(0);
                         errorbind.playAnimation();
                         linear1.setVisibility(View.GONE);
-                        WebTemp.showError("Bağlantı Hatası");
+                        NoFrost.showError("Bağlantı Hatası");
                     } else if (errorbind.isAnimating()) {
 
                         linear1.setVisibility(View.VISIBLE);
                         errorbind.setProgress(0);
                         errorbind.pauseAnimation();
                         errorbind.setVisibility(View.GONE);
-                        WebTemp.showSuccess("Bağlantı Kuruldu!");
+                        NoFrost.showSuccess("Bağlantı Kuruldu!");
 
                     }
                 } else {
-                    WebTemp.showError(getString(R.string.errorcode).concat(String.valueOf((long) (errorCode))).concat("\n".concat(getString(R.string.description).concat(description).concat("\n".concat("Url: ".concat(failingUrl))))));
+                    NoFrost.showError(getString(R.string.errorcode).concat(String.valueOf((long) (errorCode))).concat("\n".concat(getString(R.string.description).concat(description).concat("\n".concat("Url: ".concat(failingUrl))))));
                 }
             }
 
@@ -639,14 +639,14 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                     errorbind.setProgress(0);
                     errorbind.playAnimation();
                     linear1.setVisibility(View.GONE);
-                    WebTemp.showError("Bağlantı Hatası");
+                    NoFrost.showError("Bağlantı Hatası");
                 } else if (errorbind.isAnimating()) {
 
                     linear1.setVisibility(View.VISIBLE);
                     errorbind.setProgress(0);
                     errorbind.pauseAnimation();
                     errorbind.setVisibility(View.GONE);
-                    WebTemp.showSuccess("Bağlantı Kuruldu!");
+                    NoFrost.showSuccess("Bağlantı Kuruldu!");
 
                 }
             }
@@ -659,14 +659,14 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             errorbind.setProgress(0);
             errorbind.playAnimation();
             linear1.setVisibility(View.GONE);
-            WebTemp.showError("Bağlantı Hatası");
+            NoFrost.showError("Bağlantı Hatası");
         } else if (errorbind.isAnimating()) {
 
             linear1.setVisibility(View.VISIBLE);
             errorbind.setProgress(0);
             errorbind.pauseAnimation();
             errorbind.setVisibility(View.GONE);
-            WebTemp.showSuccess("Bağlantı Kuruldu!");
+            NoFrost.showSuccess("Bağlantı Kuruldu!");
 
         }
 
@@ -880,7 +880,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                         };
                         registerReceiver(onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
                     } else {
-                        WebTemp.showError(getString(R.string.opensettingsper));
+                        NoFrost.showError(getString(R.string.opensettingsper));
                     }
 
                 } catch (Exception e) {
@@ -947,7 +947,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     @Override
     public void onRewardedVideoAdFailedToLoad(int i) {
         //Reklam Yüklenmez hata kodu: i
-        WebTemp.showError("Hata: " + i);
+        NoFrost.showError("Hata: " + i);
     }
 
     @Override

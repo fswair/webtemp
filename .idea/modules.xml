@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/WebView.iml" filepath="$PROJECT_DIR$/.idea/modules/WebView.iml" group="WebView" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="WebView/app" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/temp3.iml" filepath="$PROJECT_DIR$/.idea/modules/temp3.iml" group="temp3" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/webview/webview.iml" filepath="$PROJECT_DIR$/.idea/modules/webview/webview.iml" group="WebView/webview" />
     </modules>
   </component>
 </project>
