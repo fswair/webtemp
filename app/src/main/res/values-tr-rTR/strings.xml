@@ -31,4 +31,6 @@
     <string name="nav5">Ayarlar</string>
     <string name="nav3">Bağlama Notaları</string>
     <string name="nav4">Nota istek</string>
+    <string name="darkmode">Dark Mode</string>
+
 </resources>

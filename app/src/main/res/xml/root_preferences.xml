@@ -3,7 +3,19 @@
 
     <PreferenceCategory
         app:iconSpaceReserved="false"
+        app:title="Theme">
+
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:iconSpaceReserved="false"
+            app:key="darkM"
+            app:title="@string/darkmode" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
         app:title="Genel Ayarlar">
+
 
         <SwitchPreferenceCompat
             app:defaultValue="true"

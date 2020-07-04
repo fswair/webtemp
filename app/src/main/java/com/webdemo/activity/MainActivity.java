@@ -72,6 +72,7 @@ import com.webdemo.listeners.CustomItemClickListener;
 import com.webdemo.recycler.Person;
 import com.webdemo.recycler.SimpleRecyclerAdapter;
 import com.webdemo.request.RequestNetwork;
+import com.webdemo.websettings.DarkMode;
 
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
@@ -136,6 +137,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     private boolean afa = true;
     private boolean cache = true;
     private boolean zoom = true;
+    private boolean darkM = false;
 
     private String getUr = "";
     private boolean acs = false;
@@ -700,6 +702,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         afa = prefs.getBoolean("afa", true);
         cache = prefs.getBoolean("cache", true);
         zoom = prefs.getBoolean("zoom", false);
+        darkM = prefs.getBoolean("darkM", false);
 
     }
 
@@ -748,13 +751,30 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             zoom = sharedPreferences.getBoolean(key, false);
 
         }
+        if (key.equals("darkM")) {
+            darkM = sharedPreferences.getBoolean(key, false);
 
+        }
         webview1.reload();
         _webSettings();
     }
 
+
+    private void setDarkModeOn(Boolean bool) {
+
+        if (bool) {
+            DarkMode.featureDark(webview1);
+        } else {
+            DarkMode.featureLight(webview1);
+        }
+
+    }
+
+
     @SuppressLint("SetJavaScriptEnabled")
     private void _webSettings() {
+
+        setDarkModeOn(darkM);
 
         webview1.getSettings().setJavaScriptEnabled(js);
 

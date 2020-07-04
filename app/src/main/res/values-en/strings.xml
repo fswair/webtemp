@@ -31,4 +31,5 @@
     <string name="rest">May need to restart</string>
     <string name="nav5">Settings</string>
     <string name="nav4">Note request</string>
+    <string name="darkmode">Dark Mode</string>
 </resources>

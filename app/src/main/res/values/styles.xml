@@ -8,6 +8,14 @@
         <item name="colorControlNormal">@color/colorControlNormal</item>
     </style>
 
+    <style name="AppThemeD" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="colorPrimary">@color/colorPrimaryd</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkd</item>
+        <item name="colorAccent">@color/colorAccentd</item>
+        <item name="colorControlHighlight">@color/colorControlHighlightd</item>
+        <item name="colorControlNormal">@color/colorControlNormald</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
@@ -20,5 +28,6 @@
         <item name="colorControlHighlight">#fefefe</item>
         <item name="colorControlNormal">@color/colorAccent</item>
     </style>
+
 
 </resources>
