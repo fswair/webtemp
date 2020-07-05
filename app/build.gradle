@@ -40,7 +40,7 @@ android {
         applicationId "com.webdemo"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 6
+        versionCode 11
         versionName "2.3"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

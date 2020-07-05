@@ -20,7 +20,6 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,12 +27,9 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.CookieManager;
-import android.webkit.DownloadListener;
-import android.webkit.URLUtil;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebChromeClient.FileChooserParams;
-import android.webkit.WebHistoryItem;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
@@ -87,6 +83,7 @@ import java.util.Objects;
 
 import static com.google.android.material.bottomnavigation.BottomNavigationView.OnClickListener;
 import static com.google.android.material.bottomnavigation.BottomNavigationView.OnNavigationItemSelectedListener;
+import static com.webdemo.services.downloadContent.downl;
 
 
 /**
@@ -215,6 +212,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         bottomNavigation = findViewById(R.id.bottom_navigation);
         errorbind = findViewById(R.id.errorbind);
         errorbind.setVisibility(View.GONE);
+
+
 
         /*
         Intent in = getIntent();
@@ -874,58 +873,12 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     private void ohDearDownloadMe() {
 
         ssss();
-        webview1.setDownloadListener(new DownloadListener() {
-            public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype, long contentLength) {
-                try {
-                    if (down) {
 
-                        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
-                        String cookies = CookieManager.getInstance().getCookie(url);
-                        request.addRequestHeader("cookie", cookies);
-                        request.addRequestHeader("User-Agent", userAgent);
-                        Snackbar.make(webview1, R.string.indstarted, Snackbar.LENGTH_SHORT).setAction("", new OnClickListener() {
-                            @Override
-                            public void onClick(View _view) {
-
-                            }
-                        }).show();
-                        request.setTitle(URLUtil.guessFileName(url, contentDisposition, mimetype));
-                        request.allowScanningByMediaScanner();
-                        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, URLUtil.guessFileName(url, contentDisposition, mimetype));
-
-                        DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
-                        manager.enqueue(request);
-                        com.google.android.material.snackbar.Snackbar.make(webview1, R.string.indstarted, com.google.android.material.snackbar.Snackbar.LENGTH_SHORT).setAction("", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View _view) {
-
-                            }
-                        }).show();
-                        BroadcastReceiver onComplete = new BroadcastReceiver() {
-                            public void onReceive(Context ctxt, Intent intent) {
-                                Snackbar.make(webview1, R.string.indfinish, Snackbar.LENGTH_SHORT).setAction("", new OnClickListener() {
-                                    @Override
-                                    public void onClick(View _view) {
-
-                                    }
-                                }).show();
-                                unregisterReceiver(this);
-                            }
-                        };
-                        registerReceiver(onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
-                    } else {
-                        NoFrost.showError(getString(R.string.opensettingsper));
-                    }
-
-                } catch (Exception e) {
-                    //not empty
-                }
-            }
-
-        });
+        downl(webview1, down);
 
     }
+
+
 
 
     //Video Reklam yükle
