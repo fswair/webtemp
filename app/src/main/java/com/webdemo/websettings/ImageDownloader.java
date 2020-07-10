@@ -23,7 +23,6 @@ public class ImageDownloader extends Application {
         this.activity = activity;
     }
 
-
     @Override
     public void onCreate() {
         super.onCreate();

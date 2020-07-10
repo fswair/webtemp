@@ -442,7 +442,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     private void _onCreate1() {
         _ui();
         _swipeToRefreshWeb(webview1, linear1);
-        NoFrost.giveLinksToHim();
+        NoFrost.giveLinksToHim(strr);
         onLogic();
 
         bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);

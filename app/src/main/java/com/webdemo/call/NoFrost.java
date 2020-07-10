@@ -16,8 +16,6 @@ public class NoFrost extends Application {
     private static Context context;
     private final Activity activity;
 
-    private static ArrayList<String> strr = new ArrayList<>();
-
     public NoFrost(Activity activity) {
         this.activity = activity;
     }
@@ -31,7 +29,8 @@ public class NoFrost extends Application {
     public static Context getAppContext() {
         return NoFrost.context;
     }
-    public static void giveLinksToHim() {
+
+    public static void giveLinksToHim(ArrayList<String> strr) {
 
         strr.add("twitter".concat(".com").trim().toLowerCase());
         strr.add("facebook".concat(".com").trim().toLowerCase());
