@@ -18,6 +18,7 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -81,6 +82,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
+import es.dmoral.toasty.Toasty;
+
+import static android.content.Context.CONNECTIVITY_SERVICE;
+import static android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
 import static com.google.android.material.bottomnavigation.BottomNavigationView.OnClickListener;
 import static com.google.android.material.bottomnavigation.BottomNavigationView.OnNavigationItemSelectedListener;
 import static com.webdemo.services.downloadContent.downl;
@@ -204,7 +209,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             };
 
 
-    @RequiresApi(api = VERSION_CODES.M)
+
     @Override
     protected void onCreate(Bundle _savedInstanceState) {
         super.onCreate(_savedInstanceState);
@@ -230,7 +235,11 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED || ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1000);
         } else {
-            initializeLogic();
+            if (Build.VERSION.SDK_INT >= VERSION_CODES.M) {
+                initializeLogic();
+            } else {
+                NoFrost.showError(getString(R.string.lowapi));
+            }
         }
 
 
@@ -294,13 +303,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         setSupportActionBar(_toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        _toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            //Toolbar Geri Tuşu
-            @Override
-            public void onClick(View _v) {
-                onBackPressed();
-            }
-        });
+        //Toolbar Geri Tuşu
+        _toolbar.setNavigationOnClickListener(_v -> onBackPressed());
 
         linear1 = findViewById(R.id.linear1);
         webview1 = findViewById(R.id.webview1);
@@ -352,23 +356,20 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         person_list.add(new Person("Hakkında", R.drawable.ic_about));
 
 
-        SimpleRecyclerAdapter adapter_items = new SimpleRecyclerAdapter(person_list, new CustomItemClickListener() {
-            @Override
-            public void onItemClick(View v, int position) {
+        SimpleRecyclerAdapter adapter_items = new SimpleRecyclerAdapter(person_list, (v, position) -> {
 
-                if (position == 0) {
-                    bottomNavigation.setSelectedItemId(R.id.navigation_home);
-                }
+            if (position == 0) {
+                bottomNavigation.setSelectedItemId(R.id.navigation_home);
+            }
 
-                if (position == 1) {
-                    //link to settings
-                    intent.setClass(getApplicationContext(), SettingsActivity.class);
-                    startActivity(intent);
-
-                }
-
+            if (position == 1) {
+                //link to settings
+                intent.setClass(getApplicationContext(), SettingsActivity.class);
+                startActivity(intent);
 
             }
+
+
         });
         recycler_view.setHasFixedSize(true);
 
@@ -433,7 +434,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(Color.parseColor(getString(R.string.beyaz)));
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        getWindow().getDecorView().setSystemUiVisibility(SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
 
     }
@@ -454,23 +455,20 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         ssss();
         KeyboardVisibilityEvent.setEventListener(
                 MainActivity.this,
-                new KeyboardVisibilityEventListener() {
-                    @Override
-                    public void onVisibilityChanged(boolean isOpen) {
-                        // some code depending on keyboard visiblity status
+                isOpen -> {
+                    // some code depending on keyboard visiblity status
 
 
-                        if (isOpen) {
+                    if (isOpen) {
 
-                            bottomNavigation.setVisibility(View.GONE);
+                        bottomNavigation.setVisibility(View.GONE);
 
-                        } else {
+                    } else {
 
-                            bottomNavigation.setVisibility(View.VISIBLE);
-
-                        }
+                        bottomNavigation.setVisibility(View.VISIBLE);
 
                     }
+
                 });
 
 
@@ -643,28 +641,25 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         });
 
 
-        errorbind.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        errorbind.setOnClickListener(v -> {
 
-                webview1.reload();
+            webview1.reload();
 
-                if (isNetworkAvailable()) {
+            if (isNetworkAvailable()) {
 
-                    errorbind.setVisibility(View.VISIBLE);
-                    errorbind.setProgress(0);
-                    errorbind.playAnimation();
-                    linear1.setVisibility(View.GONE);
-                    NoFrost.showError("Bağlantı Hatası");
-                } else if (errorbind.isAnimating()) {
+                errorbind.setVisibility(View.VISIBLE);
+                errorbind.setProgress(0);
+                errorbind.playAnimation();
+                linear1.setVisibility(View.GONE);
+                NoFrost.showError("Bağlantı Hatası");
+            } else if (errorbind.isAnimating()) {
 
-                    linear1.setVisibility(View.VISIBLE);
-                    errorbind.setProgress(0);
-                    errorbind.pauseAnimation();
-                    errorbind.setVisibility(View.GONE);
-                    NoFrost.showSuccess("Bağlantı Kuruldu!");
+                linear1.setVisibility(View.VISIBLE);
+                errorbind.setProgress(0);
+                errorbind.pauseAnimation();
+                errorbind.setVisibility(View.GONE);
+                NoFrost.showSuccess("Bağlantı Kuruldu!");
 
-                }
             }
         });
 
@@ -690,7 +685,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     }
 
     private boolean isNetworkAvailable() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
 
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 
@@ -832,12 +827,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         sr.setLayoutParams(new LinearLayout.LayoutParams(android.widget.LinearLayout.LayoutParams.MATCH_PARENT, android.widget.LinearLayout.LayoutParams.MATCH_PARENT));
         ((LinearLayout) _view).addView(sr);
         ((LinearLayout) _view).removeView(_webview);
-        (_view).post(new Runnable() {
-            @Override
-            public void run() {
-                sr.addView(_webview);
-            }
-        });
+        (_view).post(() -> sr.addView(_webview));
 
         _webview.canScrollVertically(View.FOCUS_DOWN);
 
@@ -846,12 +836,9 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 sr.setRefreshing(false);
             }
         });
-        sr.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                sr.setRefreshing(false);
-                _webview.reload();
-            }
+        sr.setOnRefreshListener(() -> {
+            sr.setRefreshing(false);
+            _webview.reload();
         });
 
 

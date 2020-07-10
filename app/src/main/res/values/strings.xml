@@ -54,5 +54,6 @@
     <string name="email" translatable="false">M.talataltin@gmail.com</string>
     <string name="rest">May need to restart</string>
     <string name="darkmode">Dark Mode</string>
+    <string name="lowapi">Düşük Android Sürümü</string>
 
 </resources>
