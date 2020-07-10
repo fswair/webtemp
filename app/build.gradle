@@ -17,16 +17,18 @@ apply plugin: 'com.android.application'
 
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
-apply plugin: 'com.google.firebase.firebase-perf'
+//apply plugin: 'com.google.firebase.firebase-perf'
 
 
 android {
     useLibrary 'org.apache.http.legacy'
     compileSdkVersion 30
 
+    compileOptions{
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     defaultConfig {
-
-
         android {
             defaultConfig {
                 manifestPlaceholders = [
@@ -47,7 +49,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -72,7 +74,7 @@ dependencies {
     implementation 'com.onesignal:OneSignal:[3.13.0, 3.99.99]'
     implementation 'com.google.firebase:firebase-analytics:17.4.3'
     implementation 'com.google.firebase:firebase-messaging:20.2.1'
-    implementation 'com.google.firebase:firebase-perf:19.0.7'
+    //implementation 'com.google.firebase:firebase-perf:19.0.7'
     implementation 'com.google.firebase:firebase-crashlytics:17.1.0'
 
 

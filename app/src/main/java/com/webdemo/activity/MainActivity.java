@@ -778,8 +778,11 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
         if (bool) {
             DarkMode.featureDark(webview1);
+            setTheme(R.style.AppThemeD);
         } else {
+
             DarkMode.featureLight(webview1);
+            setTheme(R.style.AppTheme);
         }
 
     }

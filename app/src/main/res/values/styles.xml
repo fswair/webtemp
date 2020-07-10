@@ -1,6 +1,8 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="background">@color/colorControlNormal</item>
+        <item name="backgroundTint">@color/colorControlNormal</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -8,13 +10,17 @@
         <item name="colorControlNormal">@color/colorControlNormal</item>
     </style>
 
+
     <style name="AppThemeD" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="background">@color/colorControlNormald</item>
+        <item name="backgroundTint">@color/colorControlNormald</item>
         <item name="colorPrimary">@color/colorPrimaryd</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDarkd</item>
         <item name="colorAccent">@color/colorAccentd</item>
         <item name="colorControlHighlight">@color/colorControlHighlightd</item>
         <item name="colorControlNormal">@color/colorControlNormald</item>
     </style>
+
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 

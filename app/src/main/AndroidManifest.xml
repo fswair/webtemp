@@ -23,7 +23,7 @@
         android:label="APP_NAME"
         android:largeHeap="true"
         android:roundIcon="@mipmap/app_icon_round"
-        android:theme="@style/AppTheme"
+        android:theme="@style/AppThemeD"
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning,Instantiatable"
         tools:targetApi="m">
