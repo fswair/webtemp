@@ -44,17 +44,17 @@ public class NoFrost extends Application {
         strr.add("play.google".concat(".com").trim().toLowerCase());
     }
 
-    public static void showMessage(String _s) {
+    public static void showMessage(Context getAppContext, String _s) {
 
-        Toasty.info(getAppContext(), _s, Toast.LENGTH_SHORT, true).show();
+        Toasty.info(getAppContext, _s, Toast.LENGTH_SHORT, true).show();
     }
 
 
-    public static void showError(String _s) {
-        Toasty.error(getAppContext(), _s, Toast.LENGTH_SHORT, true).show();
+    public static void showError(Context getAppContext, String _s) {
+        Toasty.error(getAppContext, _s, Toast.LENGTH_SHORT, true).show();
     }
 
-    public static void showSuccess(String _s) {
-        Toasty.success(getAppContext(), _s, Toasty.LENGTH_SHORT, true).show();
+    public static void showSuccess(Context getAppContext, String _s) {
+        Toasty.success(getAppContext, _s, Toasty.LENGTH_SHORT, true).show();
     }
 }

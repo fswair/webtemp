@@ -4,12 +4,8 @@ package com.webdemo.activity;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.DownloadManager;
 import android.content.ActivityNotFoundException;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -62,10 +58,8 @@ import com.google.android.gms.ads.reward.RewardItem;
 import com.google.android.gms.ads.reward.RewardedVideoAd;
 import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.snackbar.Snackbar;
 import com.webdemo.R;
 import com.webdemo.call.NoFrost;
-import com.webdemo.listeners.CustomItemClickListener;
 import com.webdemo.recycler.Person;
 import com.webdemo.recycler.SimpleRecyclerAdapter;
 import com.webdemo.request.RequestNetwork;
@@ -74,7 +68,6 @@ import com.webdemo.websettings.ImageDownloader;
 import com.webdemo.websettings.WebSet;
 
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
-import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -83,11 +76,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
-import es.dmoral.toasty.Toasty;
-
-import static android.content.Context.CONNECTIVITY_SERVICE;
 import static android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
-import static com.google.android.material.bottomnavigation.BottomNavigationView.OnClickListener;
 import static com.google.android.material.bottomnavigation.BottomNavigationView.OnNavigationItemSelectedListener;
 import static com.webdemo.services.downloadContent.downl;
 
@@ -244,7 +233,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                     WebSet.additionalSettings(webview1, true);
                 }
             } else {
-                NoFrost.showError(getString(R.string.lowapi));
+                NoFrost.showError(getApplicationContext(), getString(R.string.lowapi));
             }
         }
 
@@ -279,8 +268,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         mInterstitialAd.setAdListener(new AdListener() {
             @Override
             public void onAdFailedToLoad(int errorCode) {
-                // Code to be executed when an ad request fails.
-                NoFrost.showError("Hata: " + errorCode);
+                // Hata Bildirimi
+                //NoFrost.showError(getApplicationContext(),"Hata: " + errorCode);
             }
 
             @Override
@@ -516,7 +505,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                     startActivityForResult(intent, REQUEST_SELECT_FILE);
                 } catch (ActivityNotFoundException e) {
                     uploadMessage = null;
-                    NoFrost.showError(getString(R.string.dosyaerror));
+                    NoFrost.showError(getApplicationContext(), getString(R.string.dosyaerror));
                     return false;
                 }
                 return true;
@@ -604,7 +593,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
                 } catch (Exception e) {
 
-                    NoFrost.showMessage(e.toString());
+                    NoFrost.showMessage(getApplicationContext(), e.toString());
 
                 }
             }
@@ -642,18 +631,20 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                         errorbind.setProgress(0);
                         errorbind.playAnimation();
                         linear1.setVisibility(View.GONE);
-                        NoFrost.showError("Bağlantı Hatası");
+                        NoFrost.showError(getApplicationContext(), "Bağlantı Hatası");
                     } else if (errorbind.isAnimating()) {
 
                         linear1.setVisibility(View.VISIBLE);
                         errorbind.setProgress(0);
                         errorbind.pauseAnimation();
                         errorbind.setVisibility(View.GONE);
-                        NoFrost.showSuccess("Bağlantı Kuruldu!");
+                        NoFrost.showSuccess(getApplicationContext(), "Bağlantı Kuruldu!");
 
                     }
                 } else {
-                    NoFrost.showError(getString(R.string.errorcode).concat(String.valueOf((long) (errorCode))).concat("\n".concat(getString(R.string.description).concat(description).concat("\n".concat("Url: ".concat(failingUrl))))));
+                    if (!String.valueOf((long) (errorCode)).equals("0")) {
+                        NoFrost.showError(getApplicationContext(), getString(R.string.errorcode).concat(String.valueOf((long) (errorCode))).concat("\n".concat(getString(R.string.description).concat(description).concat("\n".concat("Url: ".concat(failingUrl))))));
+                    }
                 }
             }
 
@@ -671,14 +662,14 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 errorbind.setProgress(0);
                 errorbind.playAnimation();
                 linear1.setVisibility(View.GONE);
-                NoFrost.showError("Bağlantı Hatası");
+                NoFrost.showError(getApplicationContext(), "Bağlantı Hatası");
             } else if (errorbind.isAnimating()) {
 
                 linear1.setVisibility(View.VISIBLE);
                 errorbind.setProgress(0);
                 errorbind.pauseAnimation();
                 errorbind.setVisibility(View.GONE);
-                NoFrost.showSuccess("Bağlantı Kuruldu!");
+                NoFrost.showSuccess(getApplicationContext(), "Bağlantı Kuruldu!");
 
             }
         });
@@ -690,14 +681,14 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             errorbind.setProgress(0);
             errorbind.playAnimation();
             linear1.setVisibility(View.GONE);
-            NoFrost.showError("Bağlantı Hatası");
+            NoFrost.showError(getApplicationContext(), "Bağlantı Hatası");
         } else if (errorbind.isAnimating()) {
 
             linear1.setVisibility(View.VISIBLE);
             errorbind.setProgress(0);
             errorbind.pauseAnimation();
             errorbind.setVisibility(View.GONE);
-            NoFrost.showSuccess("Bağlantı Kuruldu!");
+            NoFrost.showSuccess(getApplicationContext(), "Bağlantı Kuruldu!");
 
         }
 
@@ -810,7 +801,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     }
 
 
-
     @SuppressLint("SetJavaScriptEnabled")
     private void _webSettings() {
 
@@ -818,7 +808,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
         webview1.getSettings().setJavaScriptEnabled(js);
 
-        webview1.getSettings().setJavaScriptCanOpenWindowsAutomatically(js);
+        //webview1.getSettings().setJavaScriptCanOpenWindowsAutomatically(js);
 
         CookieManager.getInstance().setAcceptCookie(cook);
 
@@ -841,9 +831,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         webview1.getSettings().setBuiltInZoomControls(zoom);
 
         webview1.getSettings().setDisplayZoomControls(zoom);
-        /*
-        webview1.loadUrl("javascript:(function(){ document.querySelector(\"#mobile-menu > ul > li.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-4279 > a\").style.display=\"none\";})();");
-        */
+
     }
 
 
@@ -889,14 +877,9 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
 
     private void ohDearDownloadMe() {
-
         ssss();
-
         downl(webview1, down);
-
     }
-
-
 
 
     //Video Reklam yükle
@@ -953,7 +936,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     @Override
     public void onRewardedVideoAdFailedToLoad(int i) {
         //Reklam Yüklenmez hata kodu: i
-        NoFrost.showError("Hata: " + i);
+        // NoFrost.showError(getApplicationContext(),"Hata: " + i);
     }
 
     @Override
