@@ -34,7 +34,7 @@ public class ImageDownloader extends Application {
     }
 
 
-    public static void down(WebView webView, ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
+    public static void down(WebView webView, ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo, Context context) {
         final WebView.HitTestResult webViewHitTestResult = webView.getHitTestResult();
 
         if (webViewHitTestResult.getType() == WebView.HitTestResult.IMAGE_TYPE ||
@@ -59,9 +59,7 @@ public class ImageDownloader extends Application {
                                 DownloadManager downloadManager = (DownloadManager) context.getSystemService(DOWNLOAD_SERVICE);
                                 downloadManager.enqueue(request);
 
-                                NoFrost.showSuccess("Image Downloaded Successfully.");
-                            } else {
-                                NoFrost.showError("Sorry.. Something Went Wrong.");
+
                             }
                             return false;
                         }

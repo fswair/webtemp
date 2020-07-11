@@ -16,7 +16,7 @@ repositories {
 apply plugin: 'com.android.application'
 
 apply plugin: 'com.google.gms.google-services'
-apply plugin: 'com.google.firebase.crashlytics'
+//apply plugin: 'com.google.firebase.crashlytics'
 //apply plugin: 'com.google.firebase.firebase-perf'
 
 
@@ -75,7 +75,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics:17.4.3'
     implementation 'com.google.firebase:firebase-messaging:20.2.1'
     //implementation 'com.google.firebase:firebase-perf:19.0.7'
-    implementation 'com.google.firebase:firebase-crashlytics:17.1.0'
+    //implementation 'com.google.firebase:firebase-crashlytics:17.1.0'
 
 
     implementation 'com.google.android.gms:play-services-ads:19.2.0'

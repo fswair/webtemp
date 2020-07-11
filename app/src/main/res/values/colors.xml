@@ -7,13 +7,13 @@
     <color name="navibackground">#ffffff</color>
     <color name="beyaz">#ffffff</color>
     <color name="mavi">#1a73e8</color>
-    <color name="gri">#5f6369</color>
-    <string name="beyaz" translatable="false">#ffffff</string>
 
+    <string name="beyaz" translatable="false">#ffffff</string>
     <color name="colorPrimaryd">#1a73e8</color>
     <color name="colorPrimaryDarkd">#202124</color>
     <color name="colorAccentd">#1a73e8</color>
     <color name="colorControlHighlightd">#202124</color>
     <color name="colorControlNormald">#202124</color>
-
+    <color name="navcolor">#9c59b6</color>
+    <color name="gri">#5f6369</color>
 </resources>

@@ -1,8 +1,12 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="background">@color/colorControlNormal</item>
-        <item name="backgroundTint">@color/colorControlNormal</item>
+        <item name="backgroundd">@color/colorControlNormal</item>
+        <item name="backgroundTintt">@color/colorControlNormal</item>
+        <item name="backgrounddrawer">@color/colorControlNormal</item>
+        <item name="navcolor">@color/navcolor</item>
+        <item name="navti">@color/gri</item>
+
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -11,9 +15,13 @@
     </style>
 
 
-    <style name="AppThemeD" parent="ThemeOverlay.AppCompat.Dark">
-        <item name="background">@color/colorControlNormald</item>
-        <item name="backgroundTint">@color/colorControlNormald</item>
+    <style name="AppThemeD" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="backgroundd">@color/colorControlNormald</item>
+        <item name="backgroundTintt">@color/colorControlNormald</item>
+        <item name="backgrounddrawer">@color/colorControlNormald</item>
+        <item name="navcolor">@color/navcolor</item>
+        <item name="navti">@color/gri</item>
+
         <item name="colorPrimary">@color/colorPrimaryd</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDarkd</item>
         <item name="colorAccent">@color/colorAccentd</item>
@@ -26,8 +34,10 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="PreferencesTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:background">#ffffff</item>
+    <style name="PreferencesThemeD" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:background">#202124</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textColorSecondary">#626262</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -35,5 +45,13 @@
         <item name="colorControlNormal">@color/colorAccent</item>
     </style>
 
+    <style name="PreferencesThemeL" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:background">#ffffff</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlHighlight">#fefefe</item>
+        <item name="colorControlNormal">@color/colorAccent</item>
+    </style>
 
 </resources>

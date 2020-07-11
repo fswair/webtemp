@@ -2,6 +2,7 @@ package com.webdemo.activity;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import com.webdemo.R;
 
@@ -25,7 +27,7 @@ import java.util.TimerTask;
  * induiduel webview projesidir.
  */
 
-public class SplashScreen extends AppCompatActivity {
+public class SplashScreen extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     private Timer _timer = new Timer();
 
@@ -34,14 +36,41 @@ public class SplashScreen extends AppCompatActivity {
     private TimerTask timer;
     private Intent intent = new Intent();
     private ObjectAnimator oa = new ObjectAnimator();
+    private Boolean darkM;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle _savedInstanceState) {
         super.onCreate(_savedInstanceState);
-        setContentView(R.layout.splashscreen);
+
         initialize(_savedInstanceState);
         initializeLogic();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        darkM = prefs.getBoolean("darkM", false);
+        if (darkM) {
+            setTheme(R.style.AppThemeD);
+        } else {
+            setTheme(R.style.AppTheme);
+        }
+
+
+        setContentView(R.layout.splashscreen);
+    }
+
+    private void setupSharedPreferences() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
+
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+
+        if (key.equals("darkM")) {
+            darkM = sharedPreferences.getBoolean(key, false);
+            recreate();
+        }
+
     }
 
     private void initialize(Bundle _savedInstanceState) {
@@ -70,14 +99,11 @@ public class SplashScreen extends AppCompatActivity {
         timer = new TimerTask() {
             @Override
             public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
+                runOnUiThread(() -> {
 
-                        intent.setClass(getApplicationContext(), MainActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
+                    intent.setClass(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                    finish();
                 });
             }
         };

@@ -212,14 +212,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
     @Override
     protected void onCreate(Bundle _savedInstanceState) {
+
         super.onCreate(_savedInstanceState);
-        setContentView(R.layout.main);
-        bottomNavigation = findViewById(R.id.bottom_navigation);
-        errorbind = findViewById(R.id.errorbind);
-        errorbind.setVisibility(View.GONE);
-
-
-
         /*
         Intent in = getIntent();
         Uri data = in.getData();
@@ -230,6 +224,14 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
         Intent in = getIntent();
         Uri data = in.getData();
+
+
+        ssss();
+        setDarkModeOn(darkM);
+        setContentView(R.layout.main);
+        bottomNavigation = findViewById(R.id.bottom_navigation);
+        errorbind = findViewById(R.id.errorbind);
+        errorbind.setVisibility(View.GONE);
 
         initialize(_savedInstanceState);
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED || ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
@@ -242,6 +244,21 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             }
         }
 
+        if (darkM) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                Window window = getWindow();
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                window.setStatusBarColor(Color.parseColor("#202124"));
+                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            }
+            View decorView = getWindow().getDecorView();
+            decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() & ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        } else {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.parseColor("#ffffff"));
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
 
         MobileAds.initialize(this, APP_ID);
         mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this);
@@ -253,7 +270,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
         setupSharedPreferences();
-        ssss();
+
 
 
         mInterstitialAd.setAdListener(new AdListener() {
@@ -392,7 +409,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
         super.onCreateContextMenu(contextMenu, view, contextMenuInfo);
 
-        ImageDownloader.down(webview1, contextMenu, view, contextMenuInfo);
+        ImageDownloader.down(webview1, contextMenu, view, contextMenuInfo, getApplicationContext());
 
 
     }
@@ -762,7 +779,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         }
         if (key.equals("darkM")) {
             darkM = sharedPreferences.getBoolean(key, false);
-
+            recreate();
         }
         webview1.reload();
         _webSettings();
@@ -772,21 +789,29 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     private void setDarkModeOn(Boolean bool) {
 
         if (bool) {
-            DarkMode.featureDark(webview1);
             setTheme(R.style.AppThemeD);
         } else {
-
-            DarkMode.featureLight(webview1);
             setTheme(R.style.AppTheme);
         }
 
     }
 
+    private void setDarkModeOnWeb(Boolean bool) {
+
+        if (bool) {
+            DarkMode.featureDark(webview1);
+        } else {
+            DarkMode.featureLight(webview1);
+        }
+
+    }
+
+
 
     @SuppressLint("SetJavaScriptEnabled")
     private void _webSettings() {
 
-        setDarkModeOn(darkM);
+        setDarkModeOnWeb(darkM);
 
         webview1.getSettings().setJavaScriptEnabled(js);
 
