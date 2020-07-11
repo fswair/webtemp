@@ -31,14 +31,14 @@ public class WebSet extends Application {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static void additionalSettings(WebView webView, Boolean bool) {
-        webView.getSettings().setSupportMultipleWindows(true);
+        webView.getSettings().setSupportMultipleWindows(bool);
         webView.getSettings().setPluginState(WebSettings.PluginState.ON);
-        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(bool);
         webView.getSettings().setDefaultTextEncodingName("utf-8");
-        webView.getSettings().setLoadWithOverviewMode(true);
+        webView.getSettings().setLoadWithOverviewMode(bool);
         //webView.getSettings().setTextSize(WebSettings.TextSize.SMALLER);
-        webView.getSettings().setLoadsImagesAutomatically(true);
-        webView.getSettings().setSafeBrowsingEnabled(true);
+        webView.getSettings().setLoadsImagesAutomatically(bool);
+        webView.getSettings().setSafeBrowsingEnabled(bool);
     }
 
 }

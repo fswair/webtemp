@@ -34,7 +34,7 @@
             app:title="@string/sync_title" />
 
         <SwitchPreferenceCompat
-            app:defaultValue="false"
+            app:defaultValue="true"
             app:dependency="jsdata"
             app:iconSpaceReserved="false"
             app:isPreferenceVisible="false"
@@ -44,7 +44,7 @@
             app:title="@string/attachment_title" />
 
         <SwitchPreferenceCompat
-            app:defaultValue="false"
+            app:defaultValue="true"
             app:dependency="jsdata"
             app:iconSpaceReserved="false"
             app:isPreferenceVisible="false"

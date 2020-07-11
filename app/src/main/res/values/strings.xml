@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">APP_NAME</string>
+    <string name="app_name" translatable="false">WebView Project</string>
     <string name="dosyagezgini">Dosya Gezgini</string>
     <string name="dosyasecici">Dosya Seçici</string>
     <string name="dosyaerror">Dosya Seçici Açılamıyor</string>
@@ -8,7 +8,7 @@
 
 
     <string name="url1" translatable="false">https://google.com</string>
-    <string name="url2" translatable="false">https://google.com/</string>
+    <string name="url2" translatable="false">https://virustotal.com</string>
     <string name="url3" translatable="false">https://google.com/</string>
     <string name="url4" translatable="false">https://google.com/</string>
     <string name="url5" translatable="false">https://google.com/</string>
@@ -51,7 +51,7 @@
     <string name="morething">More</string>
     <string name="opensettingsper">Open Settings</string>
     <string name="chooseemail">Choose an email application</string>
-    <string name="email" translatable="false">M.talataltin@gmail.com</string>
+    <string name="email" translatable="false">ksmtrkn2@gmail.com</string>
     <string name="rest">May need to restart</string>
     <string name="darkmode">Dark Mode</string>
     <string name="lowapi">Düşük Android Sürümü</string>

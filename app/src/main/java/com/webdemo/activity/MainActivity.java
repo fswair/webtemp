@@ -71,6 +71,7 @@ import com.webdemo.recycler.SimpleRecyclerAdapter;
 import com.webdemo.request.RequestNetwork;
 import com.webdemo.websettings.DarkMode;
 import com.webdemo.websettings.ImageDownloader;
+import com.webdemo.websettings.WebSet;
 
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
@@ -209,7 +210,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             };
 
 
-
+    @RequiresApi(api = VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle _savedInstanceState) {
 
@@ -239,6 +240,9 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         } else {
             if (Build.VERSION.SDK_INT >= VERSION_CODES.M) {
                 initializeLogic();
+                if (Build.VERSION.SDK_INT >= VERSION_CODES.O) {
+                    WebSet.additionalSettings(webview1, true);
+                }
             } else {
                 NoFrost.showError(getString(R.string.lowapi));
             }
@@ -270,7 +274,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
         setupSharedPreferences();
-
 
 
         mInterstitialAd.setAdListener(new AdListener() {
