@@ -4,9 +4,7 @@
     <color name="colorAccent">#1a73e8</color>
     <color name="colorControlHighlight">#FFFFFF</color>
     <color name="colorControlNormal">#FFFFFF</color>
-    <color name="navibackground">#ffffff</color>
     <color name="beyaz">#ffffff</color>
-    <color name="mavi">#1a73e8</color>
 
     <string name="beyaz" translatable="false">#ffffff</string>
     <color name="colorPrimaryd">#1a73e8</color>

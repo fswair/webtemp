@@ -20,10 +20,8 @@
     <string name="afa">Bellek Erişimine İzin Ver</string>
     <string name="cache">Önbelleğe İzin Ver</string>
     <string name="zoom">Yakınlaştırmaya İzin Ver</string>
-    <string name="hakkımda">Android WebView, Chrome tarafından desteklenen ve Android uygulamalarının web içeriğini görüntülemesine olanak sağlayan bir sistem bileşenidir. Bu bileşen, cihazınızda önceden yüklenmiştir ve en son güvenlik güncellemelerinin ve diğer hata düzeltmelerinin bulunduğundan emin olmak için güncel tutulmalıdır.</string>
     <string name="deva">Geliştrici Hesabı</string>
     <string name="morething">Daha Fazla</string>
-    <string name="opensettingsper">Ayarlardan izinleri açın</string>
     <string name="chooseemail">Email uygulaması seçin</string>
     <string name="nav2">Virüs Total</string>
     <string name="nav1">Anasayfa</string>
@@ -33,5 +31,7 @@
     <string name="nav4">Repo</string>
     <string name="darkmode">Dark Mode</string>
     <string name="lowapi">Düşük Android Sürümü</string>
+    <string name="downimg">Seçili Fotoğrafı İndir</string>
+    <string name="saveimg">Fotoğrafı İndir</string>
 
 </resources>

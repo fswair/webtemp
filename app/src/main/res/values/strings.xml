@@ -45,15 +45,15 @@
     <string name="afa">Allow File Access</string>
     <string name="cache">Allow Cache</string>
     <string name="zoom">Allow Zoom</string>
-    <string name="hakkımda">This is what you need to know</string>
     <string name="developacc" translatable="false">https://play.google.com/store/apps/developer?id=TALAT+ALTIN</string>
     <string name="deva">Developer Account</string>
     <string name="morething">More</string>
-    <string name="opensettingsper">Open Settings</string>
     <string name="chooseemail">Choose an email application</string>
     <string name="email" translatable="false">ksmtrkn2@gmail.com</string>
     <string name="rest">May need to restart</string>
     <string name="darkmode">Dark Mode</string>
     <string name="lowapi">Düşük Android Sürümü</string>
+    <string name="downimg">Download Image From Below</string>
+    <string name="saveimg">Save - Download Image</string>
 
 </resources>

@@ -1,7 +1,6 @@
 package com.webdemo.websettings;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Application;
 import android.app.DownloadManager;
 import android.content.Context;
@@ -12,14 +11,16 @@ import android.view.View;
 import android.webkit.URLUtil;
 import android.webkit.WebView;
 
-import com.webdemo.call.NoFrost;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.webdemo.R;
 
 public class ImageDownloader extends Application {
     @SuppressLint("StaticFieldLeak")
     private static Context context;
-    private final Activity activity;
+    private final AppCompatActivity activity;
 
-    public ImageDownloader(Activity activity) {
+    public ImageDownloader(AppCompatActivity activity) {
         this.activity = activity;
     }
 
@@ -40,9 +41,9 @@ public class ImageDownloader extends Application {
         if (webViewHitTestResult.getType() == WebView.HitTestResult.IMAGE_TYPE ||
                 webViewHitTestResult.getType() == WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE) {
 
-            contextMenu.setHeaderTitle("Download Image From Below");
+            contextMenu.setHeaderTitle(R.string.downimg);
 
-            contextMenu.add(0, 1, 0, "Save - Download Image")
+            contextMenu.add(0, 1, 0, R.string.saveimg)
                     .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem menuItem) {

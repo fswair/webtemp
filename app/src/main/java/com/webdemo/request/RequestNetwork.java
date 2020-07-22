@@ -1,6 +1,6 @@
 package com.webdemo.request;
 
-import android.app.Activity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.HashMap;
 
@@ -12,11 +12,11 @@ public class RequestNetwork {
     private HashMap<String, Object> params = new HashMap<>();
     private HashMap<String, Object> headers = new HashMap<>();
 
-    private Activity activity;
+    private AppCompatActivity activity;
 
     private int requestType = 0;
 
-    public RequestNetwork(Activity activity) {
+    public RequestNetwork(AppCompatActivity activity) {
         this.activity = activity;
     }
 
@@ -37,7 +37,7 @@ public class RequestNetwork {
         this.headers = headers;
     }
 
-    public Activity getActivity() {
+    public AppCompatActivity getActivity() {
         return activity;
     }
 

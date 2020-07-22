@@ -3,7 +3,6 @@ package com.webdemo.activity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -319,7 +318,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         webview1 = findViewById(R.id.webview1);
 
 
-        SharedPreferences s = getSharedPreferences("s", Activity.MODE_PRIVATE);
+        SharedPreferences s = getSharedPreferences("s", AppCompatActivity.MODE_PRIVATE);
 
         RequestNetwork rqey = new RequestNetwork(this);
 

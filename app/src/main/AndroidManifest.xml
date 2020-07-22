@@ -36,6 +36,9 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
+        <!--  ca-app-pub yazan kısıma kendi admob uygulama id'nizi yazınız -->
+
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3039242376817399~8547681739" />
@@ -62,9 +65,10 @@
 
                 <category android:name="android.intent.category.BROWSABLE" />
 
+                <!-- Host kısmına sitenizi yazın ve deeplink aktive olsun -->
                 <data
-                    android:host="https://google.com"
-                    android:scheme="google" />
+                    android:host="https://deneme.com"
+                    android:scheme="https" />
             </intent-filter>
         </activity>
 

@@ -1,22 +1,23 @@
 package com.webdemo.call;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.ArrayList;
 
-import es.dmoral.toasty.Toasty;
+//import es.dmoral.toasty.Toasty;
 
 public class NoFrost extends Application {
 
     @SuppressLint("StaticFieldLeak")
     private static Context context;
-    private final Activity activity;
+    private final AppCompatActivity activity;
 
-    public NoFrost(Activity activity) {
+    public NoFrost(AppCompatActivity activity) {
         this.activity = activity;
     }
 
@@ -45,16 +46,18 @@ public class NoFrost extends Application {
     }
 
     public static void showMessage(Context getAppContext, String _s) {
-
-        Toasty.info(getAppContext, _s, Toast.LENGTH_SHORT, true).show();
+        //Toasty.info(getAppContext, _s, Toast.LENGTH_SHORT, true).show();
+        Toast.makeText(getAppContext, _s, Toast.LENGTH_SHORT).show();
     }
 
 
     public static void showError(Context getAppContext, String _s) {
-        Toasty.error(getAppContext, _s, Toast.LENGTH_SHORT, true).show();
+        //Toasty.error(getAppContext, _s, Toast.LENGTH_SHORT, true).show();
+        Toast.makeText(getAppContext, _s, Toast.LENGTH_SHORT).show();
     }
 
     public static void showSuccess(Context getAppContext, String _s) {
-        Toasty.success(getAppContext, _s, Toasty.LENGTH_SHORT, true).show();
+        //Toasty.success(getAppContext, _s, Toasty.LENGTH_SHORT, true).show();
+        Toast.makeText(getAppContext, _s, Toast.LENGTH_SHORT).show();
     }
 }

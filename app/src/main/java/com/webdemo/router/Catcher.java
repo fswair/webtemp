@@ -1,18 +1,18 @@
 package com.webdemo.router;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-import android.content.Intent;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class Catcher extends Application {
     @SuppressLint("StaticFieldLeak")
     private static Context context;
-    private final Activity activity;
+    private final AppCompatActivity activity;
 
-    public Catcher(Activity activity) {
+    public Catcher(AppCompatActivity activity) {
         this.activity = activity;
     }
 

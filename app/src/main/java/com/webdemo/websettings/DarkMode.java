@@ -1,25 +1,21 @@
 package com.webdemo.websettings;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.webkit.WebView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.webkit.WebSettingsCompat;
 import androidx.webkit.WebViewFeature;
-
-import com.webdemo.R;
-import com.webdemo.activity.MainActivity;
-import com.webdemo.call.NoFrost;
 
 public class DarkMode extends Application {
 
     @SuppressLint("StaticFieldLeak")
     private static Context context;
-    private final Activity activity;
+    private final AppCompatActivity activity;
 
-    public DarkMode(Activity activity) {
+    public DarkMode(AppCompatActivity activity) {
         this.activity = activity;
 
     }

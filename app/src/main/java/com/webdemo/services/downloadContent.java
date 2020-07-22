@@ -1,7 +1,6 @@
 package com.webdemo.services;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Application;
 import android.app.DownloadManager;
 import android.content.BroadcastReceiver;
@@ -16,6 +15,8 @@ import android.webkit.DownloadListener;
 import android.webkit.URLUtil;
 import android.webkit.WebView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.snackbar.Snackbar;
 import com.webdemo.R;
 import com.webdemo.activity.MainActivity;
@@ -25,9 +26,9 @@ public class downloadContent extends Application {
 
     @SuppressLint("StaticFieldLeak")
     private static Context context;
-    private final Activity activity;
+    private final AppCompatActivity activity;
 
-    public downloadContent(Activity activity) {
+    public downloadContent(AppCompatActivity activity) {
         this.activity = activity;
     }
 

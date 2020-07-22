@@ -20,10 +20,8 @@
     <string name="afa">Allow File Access</string>
     <string name="cache">Allow Cache</string>
     <string name="zoom">Allow Zoom</string>
-    <string name="hakkımda">This is what you need to know</string>
     <string name="morething">More</string>
     <string name="deva">Developer Account</string>
-    <string name="opensettingsper">Open Settings</string>
     <string name="chooseemail">Choose an email application</string>
     <string name="nav1">Main Page</string>
     <string name="nav2">Virüs Total</string>
@@ -33,4 +31,6 @@
     <string name="nav4">Repo</string>
     <string name="darkmode">Dark Mode</string>
     <string name="lowapi">Low Api Version</string>
+    <string name="downimg">Download Image From Below</string>
+    <string name="saveimg">Save - Download Image</string>
 </resources>

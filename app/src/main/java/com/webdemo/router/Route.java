@@ -1,23 +1,20 @@
 package com.webdemo.router;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Application;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 
-
-import java.util.ArrayList;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Route extends Application {
 
     @SuppressLint("StaticFieldLeak")
     private static Context context;
-    private final Activity activity;
+    private final AppCompatActivity activity;
 
-    public Route(Activity activity) {
+    public Route(AppCompatActivity activity) {
         this.activity = activity;
     }
 

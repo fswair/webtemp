@@ -1,17 +1,17 @@
 package com.webdemo.websettings;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-import android.webkit.WebView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class InterfaceWeb extends Application {
     @SuppressLint("StaticFieldLeak")
     private static Context context;
-    private final Activity activity;
+    private final AppCompatActivity activity;
 
-    public InterfaceWeb(Activity activity) {
+    public InterfaceWeb(AppCompatActivity activity) {
         this.activity = activity;
     }
 
