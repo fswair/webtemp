@@ -135,8 +135,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     private boolean acs = false;
     private int als = 0;
 
-    private static final String AD_UNIT_ID = "ca-app-pub-3039242376817399/4392620783";
-    private static final String APP_ID = "ca-app-pub-3039242376817399~8547681739";
+    private final String AD_UNIT_ID = "ca-app-pub-3039242376817399/4392620783";
+    private final String APP_ID = "ca-app-pub-3039242376817399~8547681739";
 
     private RewardedVideoAd mRewardedVideoAd;
     private InterstitialAd mInterstitialAd;
