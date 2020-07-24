@@ -135,8 +135,9 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     private boolean acs = false;
     private int als = 0;
 
-    private final String AD_UNIT_ID = "ca-app-pub-3039242376817399/4392620783";
-    private final String APP_ID = "ca-app-pub-3039242376817399~8547681739";
+    private final String AD_UNIT_ID = getResources().getString(R.string.rewarded_ad_unit_id);
+    private final String APP_ID = getResources().getString(R.string.app_ad_id);
+    private final String INT_UNIT_ID = getResources().getString(R.string.int_ad_unit_id);
 
     private RewardedVideoAd mRewardedVideoAd;
     private InterstitialAd mInterstitialAd;
@@ -252,19 +253,21 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
 
+        //noinspection deprecation
         MobileAds.initialize(this, APP_ID);
         mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this);
         mRewardedVideoAd.setRewardedVideoAdListener(this);
         loadRewardedVideoAd();
 
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-3039242376817399/4420540945");
+        mInterstitialAd.setAdUnitId(INT_UNIT_ID);
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
         setupSharedPreferences();
 
 
         mInterstitialAd.setAdListener(new AdListener() {
+            @SuppressWarnings("deprecation")
             @Override
             public void onAdFailedToLoad(int errorCode) {
                 // Hata Bildirimi

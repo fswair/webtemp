@@ -26,6 +26,9 @@
 
 
     <string name="banner_ad_unit_id" translatable="false">ca-app-pub-3039242376817399/4775764161</string>
+    <string name="int_ad_unit_id" translatable="false">ca-app-pub-3039242376817399/4420540945</string>
+    <string name="rewarded_ad_unit_id" translatable="false">ca-app-pub-3039242376817399/4392620783</string>
+    <string name="app_ad_id" translatable="false">ca-app-pub-3039242376817399~8547681739</string>
 
     <!-- Preference Titles -->
 
