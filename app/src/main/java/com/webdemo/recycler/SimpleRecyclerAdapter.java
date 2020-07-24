@@ -38,11 +38,9 @@ public class SimpleRecyclerAdapter extends RecyclerView.Adapter<SimpleRecyclerAd
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card, parent, false);
         final ViewHolder view_holder = new ViewHolder(v);
 
-        v.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listener.onItemClick(v, view_holder.getPosition());
-            }
+        v.setOnClickListener(v1 -> {
+            //noinspection deprecation
+            listener.onItemClick(v1, view_holder.getPosition());
         });
 
         return view_holder;

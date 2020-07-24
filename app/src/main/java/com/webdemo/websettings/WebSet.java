@@ -32,6 +32,7 @@ public class WebSet extends Application {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static void additionalSettings(WebView webView, Boolean bool) {
         webView.getSettings().setSupportMultipleWindows(bool);
+        //noinspection deprecation
         webView.getSettings().setPluginState(WebSettings.PluginState.ON);
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(bool);
         webView.getSettings().setDefaultTextEncodingName("utf-8");

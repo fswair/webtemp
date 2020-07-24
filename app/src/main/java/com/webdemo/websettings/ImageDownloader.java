@@ -6,7 +6,6 @@ import android.app.DownloadManager;
 import android.content.Context;
 import android.net.Uri;
 import android.view.ContextMenu;
-import android.view.MenuItem;
 import android.view.View;
 import android.webkit.URLUtil;
 import android.webkit.WebView;
@@ -44,26 +43,23 @@ public class ImageDownloader extends Application {
             contextMenu.setHeaderTitle(R.string.downimg);
 
             contextMenu.add(0, 1, 0, R.string.saveimg)
-                    .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                        @Override
-                        public boolean onMenuItemClick(MenuItem menuItem) {
+                    .setOnMenuItemClickListener(menuItem -> {
 
-                            String DownloadImageURL = webViewHitTestResult.getExtra();
+                        String DownloadImageURL = webViewHitTestResult.getExtra();
 
-                            if (URLUtil.isValidUrl(DownloadImageURL)) {
+                        if (URLUtil.isValidUrl(DownloadImageURL)) {
 
-                                DownloadManager.Request request = new DownloadManager.Request(Uri.parse(DownloadImageURL));
-                                request.allowScanningByMediaScanner();
+                            DownloadManager.Request request = new DownloadManager.Request(Uri.parse(DownloadImageURL));
+                            request.allowScanningByMediaScanner();
 
 
-                                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                                DownloadManager downloadManager = (DownloadManager) context.getSystemService(DOWNLOAD_SERVICE);
-                                downloadManager.enqueue(request);
+                            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+                            DownloadManager downloadManager = (DownloadManager) context.getSystemService(DOWNLOAD_SERVICE);
+                            downloadManager.enqueue(request);
 
 
-                            }
-                            return false;
                         }
+                        return false;
                     });
         }
 

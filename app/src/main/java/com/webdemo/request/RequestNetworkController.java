@@ -142,6 +142,7 @@ public class RequestNetworkController {
                     reqBuilder.url(url).headers(headerBuilder.build()).method(method, reqBody);
                 }
             } else {
+                //noinspection deprecation
                 RequestBody reqBody = RequestBody.create(okhttp3.MediaType.parse("application/json"), new Gson().toJson(requestNetwork.getParams()));
 
                 if (method.equals(GET)) {
