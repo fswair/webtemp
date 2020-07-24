@@ -22,6 +22,7 @@ import com.webdemo.R;
 import com.webdemo.activity.MainActivity;
 
 
+@SuppressWarnings("ALL")
 public class downloadContent extends Application {
 
     @SuppressLint("StaticFieldLeak")

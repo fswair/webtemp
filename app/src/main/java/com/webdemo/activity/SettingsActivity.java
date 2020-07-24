@@ -75,6 +75,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
         }
 
 
+        //noinspection Convert2Lambda
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
@@ -155,6 +156,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
                 }
                 if (key.equals("darkM")) {
 
+                    //noinspection ConstantConditions
                     getActivity().recreate();
                     return true;
                 }

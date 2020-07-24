@@ -28,6 +28,7 @@ import okhttp3.Response;
  * induiduel webview projesidir.
  */
 
+
 public class RequestNetworkController {
     public static final String GET = "GET";
     public static final String POST = "POST";

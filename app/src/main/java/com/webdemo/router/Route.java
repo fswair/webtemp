@@ -8,6 +8,7 @@ import android.net.Uri;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+@SuppressWarnings("ConstantConditions")
 public class Route extends Application {
 
     @SuppressLint("StaticFieldLeak")
@@ -30,6 +31,7 @@ public class Route extends Application {
 
     public static void linkRoute(String url, String sheme) {
         if (Uri.parse(url).getScheme().equals(sheme)) {
+            //noinspection EmptyTryBlock
             try {
                 // Google Play will start
             } catch (ActivityNotFoundException e) {
