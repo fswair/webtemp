@@ -9,6 +9,7 @@
             app:defaultValue="false"
             app:iconSpaceReserved="false"
             app:key="darkM"
+            app:isPreferenceVisible="false"
             app:title="@string/darkmode" />
     </PreferenceCategory>
 

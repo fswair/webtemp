@@ -47,17 +47,17 @@ public class NoFrost extends Application {
 
     public static void showMessage(Context getAppContext, String _s) {
         Toasty.info(getAppContext, _s, Toast.LENGTH_SHORT, true).show();
-        Toast.makeText(getAppContext, _s, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getAppContext, _s, Toast.LENGTH_SHORT).show();
     }
 
 
     public static void showError(Context getAppContext, String _s) {
         Toasty.error(getAppContext, _s, Toast.LENGTH_SHORT, true).show();
-        Toast.makeText(getAppContext, _s, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getAppContext, _s, Toast.LENGTH_SHORT).show();
     }
 
     public static void showSuccess(Context getAppContext, String _s) {
         Toasty.success(getAppContext, _s, Toasty.LENGTH_SHORT, true).show();
-        Toast.makeText(getAppContext, _s, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getAppContext, _s, Toast.LENGTH_SHORT).show();
     }
 }

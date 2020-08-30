@@ -135,9 +135,9 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     private boolean acs = false;
     private int als = 0;
 
-    private final String AD_UNIT_ID = getResources().getString(R.string.rewarded_ad_unit_id);
-    private final String APP_ID = getResources().getString(R.string.app_ad_id);
-    private final String INT_UNIT_ID = getResources().getString(R.string.int_ad_unit_id);
+    private final String AD_UNIT_ID = "ca-app-pub-3039242376817399/4392620783";
+    private final String APP_ID = "ca-app-pub-3039242376817399~8547681739";
+    private final String INT_UNIT_ID = "ca-app-pub-3039242376817399/4420540945";
 
     private RewardedVideoAd mRewardedVideoAd;
     private InterstitialAd mInterstitialAd;
