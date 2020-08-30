@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/splash_ic"
-        android:tint="@color/colorAccent"
         android:cropToPadding="true"
+        app:tint="@color/colorAccent"
         tools:ignore="ContentDescription" />
 </LinearLayout>

@@ -23,8 +23,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:scaleType="centerInside"
-            android:tint="@color/gri"
             android:tintMode="src_atop"
+            card_view:tint="@color/gri"
             tools:ignore="ContentDescription,ObsoleteLayoutParam,RtlHardcoded" />
 
         <TextView

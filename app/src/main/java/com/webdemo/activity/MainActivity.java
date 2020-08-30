@@ -462,7 +462,16 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     }
 
     private void onLogic() {
+/*
+        try {
+            SecretKey secret = generateKey();
+            byte[] a = Ciphers.encryptMsg("String toEncrypt", secret);
 
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | InvalidParameterSpecException | IllegalBlockSizeException | BadPaddingException | UnsupportedEncodingException | InvalidKeySpecException e) {
+            e.printStackTrace();
+        }
+
+ */
         ssss();
         KeyboardVisibilityEvent.setEventListener(
                 MainActivity.this,
@@ -476,7 +485,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
                     } else {
 
-                        bottomNavigation.setVisibility(View.VISIBLE);
+                        bottomNavigation.setVisibility(View.GONE);
 
                     }
 
@@ -627,22 +636,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
                 if (String.valueOf((long) (errorCode)).equals("-2")) {
 
-                    if (isNetworkAvailable()) {
-
-                        errorbind.setVisibility(View.VISIBLE);
-                        errorbind.setProgress(0);
-                        errorbind.playAnimation();
-                        linear1.setVisibility(View.GONE);
-                        NoFrost.showError(getApplicationContext(), "Bağlantı Hatası");
-                    } else if (errorbind.isAnimating()) {
-
-                        linear1.setVisibility(View.VISIBLE);
-                        errorbind.setProgress(0);
-                        errorbind.pauseAnimation();
-                        errorbind.setVisibility(View.GONE);
-                        NoFrost.showSuccess(getApplicationContext(), "Bağlantı Kuruldu!");
-
-                    }
+                    errorResponse(true);
                 } else {
                     if (!String.valueOf((long) (errorCode)).equals("0")) {
                         NoFrost.showError(getApplicationContext(), getString(R.string.errorcode).concat(String.valueOf((long) (errorCode))).concat("\n".concat(getString(R.string.description).concat(description).concat("\n".concat("Url: ".concat(failingUrl))))));
@@ -650,50 +644,47 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 }
             }
 
-
         });
-
 
         errorbind.setOnClickListener(v -> {
 
             webview1.reload();
+            errorResponse(false);
 
+        });
+
+    }
+
+    private void errorResponse(boolean check) {
+        if (check) {
             if (isNetworkAvailable()) {
-
                 errorbind.setVisibility(View.VISIBLE);
                 errorbind.setProgress(0);
                 errorbind.playAnimation();
                 linear1.setVisibility(View.GONE);
                 NoFrost.showError(getApplicationContext(), "Bağlantı Hatası");
             } else if (errorbind.isAnimating()) {
-
                 linear1.setVisibility(View.VISIBLE);
                 errorbind.setProgress(0);
                 errorbind.pauseAnimation();
                 errorbind.setVisibility(View.GONE);
                 NoFrost.showSuccess(getApplicationContext(), "Bağlantı Kuruldu!");
+            }
+        } else {
+            if (isNetworkAvailable()) {
+                errorbind.setVisibility(View.VISIBLE);
+                errorbind.setProgress(0);
+                errorbind.playAnimation();
+                linear1.setVisibility(View.GONE);
+
+            } else if (errorbind.isAnimating()) {
+                linear1.setVisibility(View.VISIBLE);
+                errorbind.setProgress(0);
+                errorbind.pauseAnimation();
+                errorbind.setVisibility(View.GONE);
 
             }
-        });
-
-
-        if (isNetworkAvailable()) {
-
-            errorbind.setVisibility(View.VISIBLE);
-            errorbind.setProgress(0);
-            errorbind.playAnimation();
-            linear1.setVisibility(View.GONE);
-            NoFrost.showError(getApplicationContext(), "Bağlantı Hatası");
-        } else if (errorbind.isAnimating()) {
-
-            linear1.setVisibility(View.VISIBLE);
-            errorbind.setProgress(0);
-            errorbind.pauseAnimation();
-            errorbind.setVisibility(View.GONE);
-            NoFrost.showSuccess(getApplicationContext(), "Bağlantı Kuruldu!");
-
         }
-
 
     }
 
