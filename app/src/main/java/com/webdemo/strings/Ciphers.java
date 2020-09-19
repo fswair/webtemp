@@ -1,5 +1,5 @@
 package com.webdemo.strings;
-
+//This Class is never used
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
