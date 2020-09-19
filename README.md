@@ -18,4 +18,6 @@
 - Package Name [app/build.gradle](https://github.com/induiduel/webtemp/blob/c98eb45fb5afaf6f90e5d22a1e2c68d5bfc648c7/app/build.gradle#L41)
 - Package Name [AndroidManifest.xml](https://github.com/induiduel/webtemp/blob/c98eb45fb5afaf6f90e5d22a1e2c68d5bfc648c7/app/src/main/AndroidManifest.xml#L5)
 
-###### Do not forget to refactor directory names
+```
+Do not forget to refactor directory names
+```
