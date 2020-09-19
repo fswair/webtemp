@@ -15,3 +15,5 @@ Quick Scope:
 - Onesignal ID [app/build.gradle](https://github.com/induiduel/webtemp/blob/3609d9f9d6b202016eb9259c64e2f7e39345fbcb/app/build.gradle#L35)
 - WebView Url's (4 needed) [strings.xml](https://github.com/induiduel/webtemp/blob/3609d9f9d6b202016eb9259c64e2f7e39345fbcb/app/src/main/res/values/strings.xml#L10)
 - Deeplink Url [AndroidManifest.xml](https://github.com/induiduel/webtemp/blob/3609d9f9d6b202016eb9259c64e2f7e39345fbcb/app/src/main/AndroidManifest.xml#L73)
+- Package Name [app/build.gradle](https://github.com/induiduel/webtemp/blob/c98eb45fb5afaf6f90e5d22a1e2c68d5bfc648c7/app/build.gradle#L41)
+- Package Name [AndroidManifest.xml](https://github.com/induiduel/webtemp/blob/c98eb45fb5afaf6f90e5d22a1e2c68d5bfc648c7/app/src/main/AndroidManifest.xml#L5)
