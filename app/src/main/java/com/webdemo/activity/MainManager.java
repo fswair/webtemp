@@ -121,7 +121,7 @@ public abstract class MainManager extends AppCompatActivity {
     protected void loadRewardedVideoAd() {
         //yüklenirse gösterilir..
         if (!MainActivity.mRewardedVideoAd.isLoaded()) {
-            MainActivity.mRewardedVideoAd.loadAd(MainActivity.AD_UNIT_ID, new AdRequest.Builder().build());
+            MainActivity.mRewardedVideoAd.loadAd(MainActivity.rewardedAdId, new AdRequest.Builder().build());
         } else {
             MainActivity.webview1.loadUrl(getString(R.string.url4));
 

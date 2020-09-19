@@ -85,38 +85,8 @@ import static com.google.android.material.bottomnavigation.BottomNavigationView.
 public class MainActivity extends MainManager implements SharedPreferences.OnSharedPreferenceChangeListener, RewardedVideoAdListener {
     public static final int REQUEST_SELECT_FILE = 100;
     private final static int FILECHOOSER_RESULTCODE = 1;
-    public ValueCallback<Uri[]> uploadMessage;
-    protected FrameLayout mFullscreenContainer;
-    LottieAnimationView errorbind;
-    private DrawerLayout _drawer;
-    private FileChooserParams fileChooserParams;
-    private ValueCallback mUploadMessage;
-    private ArrayList<String> location = new ArrayList<>();
-    private ArrayList<HashMap<String, Object>> getThis = new ArrayList<>();
-    private LinearLayout linear1;
     public static WebView webview1;
-    private ProgressBar progressbar;
-    private Intent intent = new Intent();
-    private Intent i = new Intent();
-    private View customview1;
-    private int mOriginalSystemUiVisibility;
     public static Context context;
-    private DrawerLayout drawer;
-    private ViewPager viewPager;
-
-    private int mOriginalOrientation;
-    private WebChromeClient.CustomViewCallback mCustomViewCallBack;
-    private WebChromeClient.CustomViewCallback mCustomViewCallback;
-    private BottomNavigationView bottomNavigation;
-
-    private LinearLayout _drawer_linear1;
-
-
-    private RecyclerView recycler_view;
-    private List<Person> person_list;
-    private RatingBar ratingBar;
-
-
     public static boolean js = true;
     public static boolean down = true;
     public static boolean up = true;
@@ -129,18 +99,39 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
     public static boolean darkM = false;
 
     public static String getUr = "";
-    private boolean acs = false;
-    private int als = 0;
     //TODO ADMOB APP and AD ID's
-    //app
-    public static String APP_ID = "ca-app-pub-3039242376817399~8547681739";
-    //ads
-    public static String AD_UNIT_ID = "ca-app-pub-3039242376817399/4392620783";
-    public static String INT_UNIT_ID = "ca-app-pub-3039242376817399/4420540945";
+    public static String appId = "ca-app-pub-3**~8547681739";
+    public static String rewardedAdId = "ca-app-pub-3**/4392620783";
+    public static String interstitialAdId = "ca-app-pub-3**/4420540945";
 
     public static RewardedVideoAd mRewardedVideoAd;
     public static InterstitialAd mInterstitialAd;
-
+    public ValueCallback<Uri[]> uploadMessage;
+    protected FrameLayout mFullscreenContainer;
+    LottieAnimationView errorbind;
+    private DrawerLayout _drawer;
+    private FileChooserParams fileChooserParams;
+    private ValueCallback mUploadMessage;
+    private ArrayList<String> location = new ArrayList<>();
+    private ArrayList<HashMap<String, Object>> getThis = new ArrayList<>();
+    private LinearLayout linear1;
+    private ProgressBar progressbar;
+    private Intent intent = new Intent();
+    private Intent i = new Intent();
+    private View customview1;
+    private int mOriginalSystemUiVisibility;
+    private DrawerLayout drawer;
+    private ViewPager viewPager;
+    private int mOriginalOrientation;
+    private WebChromeClient.CustomViewCallback mCustomViewCallBack;
+    private WebChromeClient.CustomViewCallback mCustomViewCallback;
+    private BottomNavigationView bottomNavigation;
+    private LinearLayout _drawer_linear1;
+    private RecyclerView recycler_view;
+    private List<Person> person_list;
+    private RatingBar ratingBar;
+    private boolean acs = false;
+    private int als = 0;
     private OnNavigationItemSelectedListener navigationItemSelectedListener =
             new OnNavigationItemSelectedListener() {
                 //BottomNavigationBar Hareketlerini dinler
@@ -426,13 +417,13 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
         }
 
         //noinspection deprecation
-        MobileAds.initialize(this, APP_ID);
+        MobileAds.initialize(this, appId);
         mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this);
         mRewardedVideoAd.setRewardedVideoAdListener(this);
         loadRewardedVideoAd();
 
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId(INT_UNIT_ID);
+        mInterstitialAd.setAdUnitId(interstitialAdId);
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
         setupSharedPreferences();
