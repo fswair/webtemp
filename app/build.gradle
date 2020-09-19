@@ -6,6 +6,7 @@ buildscript {
         jcenter()
     }
     dependencies {
+        //noinspection GradleDependency
         classpath 'gradle.plugin.com.onesignal:onesignal-gradle-plugin:[0.11.2, 0.99.99]'
     }
 }
@@ -30,12 +31,13 @@ android {
         android {
             defaultConfig {
                 manifestPlaceholders = [
+                        //TODO onesignal_app_id change to your api key and don't forget to replace google-services.json file
                         onesignal_app_id               : 'Empty',
                         onesignal_google_project_number: 'REMOTE'
                 ]
             }
         }
-
+        //TODO Change Package Name
         applicationId "com.webdemo"
         minSdkVersion 21
         targetSdkVersion 30
@@ -65,8 +67,10 @@ dependencies {
     implementation 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:2.1.0'
     implementation 'com.airbnb.android:lottie:3.4.2'
 
+    //noinspection GradleDependency
     implementation 'androidx.browser:browser:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
+    //noinspection GradleDependency
     implementation 'androidx.fragment:fragment:1.0.0'
 
     implementation 'com.github.GrenderG:Toasty:1.4.2'

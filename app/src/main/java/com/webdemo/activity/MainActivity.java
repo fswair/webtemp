@@ -4,6 +4,7 @@ package com.webdemo.activity;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -22,7 +23,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.webkit.CookieManager;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebChromeClient.FileChooserParams;
@@ -45,7 +45,6 @@ import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -77,14 +76,13 @@ import java.util.Objects;
 
 import static android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
 import static com.google.android.material.bottomnavigation.BottomNavigationView.OnNavigationItemSelectedListener;
-import static com.webdemo.services.downloadContent.downl;
 
 
 /**
- * induiduel webview projesidir.
+ * induiduel WebView projesidir.
  */
 
-public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener, RewardedVideoAdListener {
+public class MainActivity extends MainManager implements SharedPreferences.OnSharedPreferenceChangeListener, RewardedVideoAdListener {
     public static final int REQUEST_SELECT_FILE = 100;
     private final static int FILECHOOSER_RESULTCODE = 1;
     public ValueCallback<Uri[]> uploadMessage;
@@ -93,17 +91,16 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     private DrawerLayout _drawer;
     private FileChooserParams fileChooserParams;
     private ValueCallback mUploadMessage;
-    private ArrayList<String> strr = new ArrayList<>();
     private ArrayList<String> location = new ArrayList<>();
     private ArrayList<HashMap<String, Object>> getThis = new ArrayList<>();
     private LinearLayout linear1;
-    private WebView webview1;
+    public static WebView webview1;
     private ProgressBar progressbar;
     private Intent intent = new Intent();
     private Intent i = new Intent();
     private View customview1;
     private int mOriginalSystemUiVisibility;
-
+    public static Context context;
     private DrawerLayout drawer;
     private ViewPager viewPager;
 
@@ -120,27 +117,29 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     private RatingBar ratingBar;
 
 
-    private boolean js = true;
-    private boolean down = true;
-    private boolean up = true;
-    private boolean form = true;
-    private boolean cook = true;
-    private boolean aca = true;
-    private boolean afa = true;
-    private boolean cache = true;
-    private boolean zoom = true;
-    private boolean darkM = false;
+    public static boolean js = true;
+    public static boolean down = true;
+    public static boolean up = true;
+    public static boolean form = true;
+    public static boolean cook = true;
+    public static boolean aca = true;
+    public static boolean afa = true;
+    public static boolean cache = true;
+    public static boolean zoom = true;
+    public static boolean darkM = false;
 
-    private String getUr = "";
+    public static String getUr = "";
     private boolean acs = false;
     private int als = 0;
+    //TODO ADMOB APP and AD ID's
+    //app
+    public static String APP_ID = "ca-app-pub-3039242376817399~8547681739";
+    //ads
+    public static String AD_UNIT_ID = "ca-app-pub-3039242376817399/4392620783";
+    public static String INT_UNIT_ID = "ca-app-pub-3039242376817399/4420540945";
 
-    private final String AD_UNIT_ID = "ca-app-pub-3039242376817399/4392620783";
-    private final String APP_ID = "ca-app-pub-3039242376817399~8547681739";
-    private final String INT_UNIT_ID = "ca-app-pub-3039242376817399/4420540945";
-
-    private RewardedVideoAd mRewardedVideoAd;
-    private InterstitialAd mInterstitialAd;
+    public static RewardedVideoAd mRewardedVideoAd;
+    public static InterstitialAd mInterstitialAd;
 
     private OnNavigationItemSelectedListener navigationItemSelectedListener =
             new OnNavigationItemSelectedListener() {
@@ -198,103 +197,13 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 }
             };
 
+    public static void setDarkModeOnWeb(Boolean bool) {
 
-    @RequiresApi(api = VERSION_CODES.M)
-    @Override
-    protected void onCreate(Bundle _savedInstanceState) {
-
-        super.onCreate(_savedInstanceState);
-        /*
-        Intent in = getIntent();
-        Uri data = in.getData();
-
-        used for deeplinking
-         */
-
-
-        Intent in = getIntent();
-        Uri data = in.getData();
-
-
-        ssss();
-        setDarkModeOn(darkM);
-        setContentView(R.layout.main);
-        bottomNavigation = findViewById(R.id.bottom_navigation);
-        errorbind = findViewById(R.id.errorbind);
-        errorbind.setVisibility(View.GONE);
-
-        initialize(_savedInstanceState);
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED || ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1000);
+        if (bool) {
+            DarkMode.featureDark(webview1);
         } else {
-            if (Build.VERSION.SDK_INT >= VERSION_CODES.M) {
-                initializeLogic();
-                if (Build.VERSION.SDK_INT >= VERSION_CODES.O) {
-                    WebSet.additionalSettings(webview1, true);
-                }
-            } else {
-                NoFrost.showError(getApplicationContext(), getString(R.string.lowapi));
-            }
+            DarkMode.featureLight(webview1);
         }
-
-        if (darkM) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                Window window = getWindow();
-                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                window.setStatusBarColor(Color.parseColor("#202124"));
-                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-            }
-            View decorView = getWindow().getDecorView();
-            decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() & ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        } else {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.parseColor("#ffffff"));
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        }
-
-        //noinspection deprecation
-        MobileAds.initialize(this, APP_ID);
-        mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this);
-        mRewardedVideoAd.setRewardedVideoAdListener(this);
-        loadRewardedVideoAd();
-
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId(INT_UNIT_ID);
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
-
-        setupSharedPreferences();
-
-
-        mInterstitialAd.setAdListener(new AdListener() {
-            @SuppressWarnings("deprecation")
-            @Override
-            public void onAdFailedToLoad(int errorCode) {
-                // Hata Bildirimi
-                //NoFrost.showError(getApplicationContext(),"Hata: " + errorCode);
-            }
-
-            @Override
-            public void onAdOpened() {
-
-
-            }
-
-            @Override
-            public void onAdLoaded() {
-                als++;
-            }
-
-
-            @Override
-            public void onAdClosed() {
-                // Code to be executed when the interstitial ad is closed.
-                webview1.loadUrl(getUr);
-                if (als <= 1) {
-                    mInterstitialAd.loadAd(new AdRequest.Builder().build());
-                }
-            }
-        });
 
     }
 
@@ -461,6 +370,152 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
     }
 
+    @RequiresApi(api = VERSION_CODES.M)
+    @Override
+    protected void onCreate(Bundle _savedInstanceState) {
+
+        super.onCreate(_savedInstanceState);
+        /*
+        Intent in = getIntent();
+        Uri data = in.getData();
+
+        used for deeplinking
+         */
+
+
+        Intent in = getIntent();
+        Uri data = in.getData();
+
+
+        sharedPreferencesWebSettings();
+        setDarkModeOn(darkM);
+        setContentView(R.layout.main);
+        bottomNavigation = findViewById(R.id.bottom_navigation);
+        errorbind = findViewById(R.id.errorbind);
+        errorbind.setVisibility(View.GONE);
+
+        initialize(_savedInstanceState);
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED || ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1000);
+        } else {
+            if (Build.VERSION.SDK_INT >= VERSION_CODES.M) {
+                initializeLogic();
+                if (Build.VERSION.SDK_INT >= VERSION_CODES.O) {
+                    WebSet.additionalSettings(webview1, true);
+                }
+            } else {
+                NoFrost.showError(getApplicationContext(), getString(R.string.lowapi));
+            }
+        }
+
+        if (darkM) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                Window window = getWindow();
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                window.setStatusBarColor(Color.parseColor("#202124"));
+                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            }
+            View decorView = getWindow().getDecorView();
+            decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() & ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        } else {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.parseColor("#ffffff"));
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
+
+        //noinspection deprecation
+        MobileAds.initialize(this, APP_ID);
+        mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this);
+        mRewardedVideoAd.setRewardedVideoAdListener(this);
+        loadRewardedVideoAd();
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId(INT_UNIT_ID);
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+
+        setupSharedPreferences();
+
+
+        mInterstitialAd.setAdListener(new AdListener() {
+            @SuppressWarnings("deprecation")
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                // Hata Bildirimi
+                //NoFrost.showError(getApplicationContext(),"Hata: " + errorCode);
+            }
+
+            @Override
+            public void onAdOpened() {
+
+
+            }
+
+            @Override
+            public void onAdLoaded() {
+                als++;
+            }
+
+
+            @Override
+            public void onAdClosed() {
+                // Code to be executed when the interstitial ad is closed.
+                webview1.loadUrl(getUr);
+                if (als <= 1) {
+                    mInterstitialAd.loadAd(new AdRequest.Builder().build());
+                }
+            }
+        });
+
+    }
+
+    private void errorResponse(boolean check) {
+        if (check) {
+            if (isNetworkAvailable()) {
+                errorbind.setVisibility(View.VISIBLE);
+                errorbind.setProgress(0);
+                errorbind.playAnimation();
+                linear1.setVisibility(View.GONE);
+                NoFrost.showError(getApplicationContext(), "Bağlantı Hatası");
+            } else if (errorbind.isAnimating()) {
+                linear1.setVisibility(View.VISIBLE);
+                errorbind.setProgress(0);
+                errorbind.pauseAnimation();
+                errorbind.setVisibility(View.GONE);
+                NoFrost.showSuccess(getApplicationContext(), "Bağlantı Kuruldu!");
+            }
+        } else {
+            if (isNetworkAvailable()) {
+                errorbind.setVisibility(View.VISIBLE);
+                errorbind.setProgress(0);
+                errorbind.playAnimation();
+                linear1.setVisibility(View.GONE);
+
+            } else if (errorbind.isAnimating()) {
+                linear1.setVisibility(View.VISIBLE);
+                errorbind.setProgress(0);
+                errorbind.pauseAnimation();
+                errorbind.setVisibility(View.GONE);
+
+            }
+        }
+
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+
+        return activeNetworkInfo == null || !activeNetworkInfo.isConnected();
+    }
+
+    private void setupSharedPreferences() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
+
+    }
+
     private void onLogic() {
 /*
         try {
@@ -472,7 +527,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         }
 
  */
-        ssss();
+        sharedPreferencesWebSettings();
         KeyboardVisibilityEvent.setEventListener(
                 MainActivity.this,
                 isOpen -> {
@@ -614,7 +669,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
         registerForContextMenu(webview1);
         webview1.loadUrl(getString(R.string.url1));
-        _webSettings();
+        _webSettings(webview1);
         ohDearDownloadMe();
 
 
@@ -655,70 +710,16 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
     }
 
-    private void errorResponse(boolean check) {
-        if (check) {
-            if (isNetworkAvailable()) {
-                errorbind.setVisibility(View.VISIBLE);
-                errorbind.setProgress(0);
-                errorbind.playAnimation();
-                linear1.setVisibility(View.GONE);
-                NoFrost.showError(getApplicationContext(), "Bağlantı Hatası");
-            } else if (errorbind.isAnimating()) {
-                linear1.setVisibility(View.VISIBLE);
-                errorbind.setProgress(0);
-                errorbind.pauseAnimation();
-                errorbind.setVisibility(View.GONE);
-                NoFrost.showSuccess(getApplicationContext(), "Bağlantı Kuruldu!");
-            }
+
+    private void setDarkModeOn(Boolean bool) {
+
+        if (bool) {
+            setTheme(R.style.AppThemeD);
         } else {
-            if (isNetworkAvailable()) {
-                errorbind.setVisibility(View.VISIBLE);
-                errorbind.setProgress(0);
-                errorbind.playAnimation();
-                linear1.setVisibility(View.GONE);
-
-            } else if (errorbind.isAnimating()) {
-                linear1.setVisibility(View.VISIBLE);
-                errorbind.setProgress(0);
-                errorbind.pauseAnimation();
-                errorbind.setVisibility(View.GONE);
-
-            }
+            setTheme(R.style.AppTheme);
         }
 
     }
-
-    private boolean isNetworkAvailable() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
-
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-
-        return activeNetworkInfo == null || !activeNetworkInfo.isConnected();
-    }
-
-    private void setupSharedPreferences() {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
-
-    }
-
-
-    private void ssss() {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-
-        js = prefs.getBoolean("jsdata", true);
-        down = prefs.getBoolean("downloaddata", false);
-        up = prefs.getBoolean("uploaddata", false);
-        form = prefs.getBoolean("formdata", true);
-        cook = prefs.getBoolean("cook", true);
-        aca = prefs.getBoolean("aca", true);
-        afa = prefs.getBoolean("afa", true);
-        cache = prefs.getBoolean("cache", true);
-        zoom = prefs.getBoolean("zoom", false);
-        darkM = prefs.getBoolean("darkM", false);
-
-    }
-
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
@@ -769,122 +770,9 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             recreate();
         }
         webview1.reload();
-        _webSettings();
+        _webSettings(webview1);
     }
 
-
-    private void setDarkModeOn(Boolean bool) {
-
-        if (bool) {
-            setTheme(R.style.AppThemeD);
-        } else {
-            setTheme(R.style.AppTheme);
-        }
-
-    }
-
-    private void setDarkModeOnWeb(Boolean bool) {
-
-        if (bool) {
-            DarkMode.featureDark(webview1);
-        } else {
-            DarkMode.featureLight(webview1);
-        }
-
-    }
-
-
-    @SuppressLint("SetJavaScriptEnabled")
-    private void _webSettings() {
-
-        setDarkModeOnWeb(darkM);
-
-        webview1.getSettings().setJavaScriptEnabled(js);
-
-        //webview1.getSettings().setJavaScriptCanOpenWindowsAutomatically(js);
-
-        CookieManager.getInstance().setAcceptCookie(cook);
-
-        webview1.getSettings().setAllowContentAccess(aca);
-
-        webview1.getSettings().setAllowFileAccess(afa);
-
-        webview1.getSettings().setAppCacheEnabled(cache);
-
-        webview1.getSettings().setLoadWithOverviewMode(true);
-
-        webview1.getSettings().setUseWideViewPort(true);
-
-        webview1.getSettings().setDomStorageEnabled(true);
-
-        webview1.getSettings().setSaveFormData(form);
-
-        webview1.getSettings().setSupportZoom(zoom);
-
-        webview1.getSettings().setBuiltInZoomControls(zoom);
-
-        webview1.getSettings().setDisplayZoomControls(zoom);
-
-    }
-
-
-    @SuppressLint("SetJavaScriptEnabled")
-    private void _swipeToRefreshWeb(final WebView _webview, final View _view) {
-
-
-        final SwipeRefreshLayout sr = new SwipeRefreshLayout(this);
-        sr.setLayoutParams(new LinearLayout.LayoutParams(android.widget.LinearLayout.LayoutParams.MATCH_PARENT, android.widget.LinearLayout.LayoutParams.MATCH_PARENT));
-        ((LinearLayout) _view).addView(sr);
-        ((LinearLayout) _view).removeView(_webview);
-        (_view).post(() -> sr.addView(_webview));
-
-        _webview.canScrollVertically(View.FOCUS_DOWN);
-
-        _webview.setWebViewClient(new WebViewClient() {
-            public void onPageFinished(WebView view, String url) {
-                sr.setRefreshing(false);
-            }
-        });
-        sr.setOnRefreshListener(() -> {
-            sr.setRefreshing(false);
-            _webview.reload();
-        });
-
-
-    }
-
-
-    private void _soLinkMyPage(final String _urlSt) {
-        double iii;
-        for (iii = 0; iii < strr.size(); iii++) {
-
-            if (_urlSt.contains(strr.get((int) (iii)))) {
-                webview1.stopLoading();
-                Intent intentt = new Intent();
-                intentt.setAction(Intent.ACTION_VIEW);
-                intentt.setData(Uri.parse(_urlSt));
-                startActivity(intentt);
-            }
-        }
-    }
-
-
-    private void ohDearDownloadMe() {
-        ssss();
-        downl(webview1, down);
-    }
-
-
-    //Video Reklam yükle
-    private void loadRewardedVideoAd() {
-        //yüklenirse gösterilir..
-        if (!mRewardedVideoAd.isLoaded()) {
-            mRewardedVideoAd.loadAd(AD_UNIT_ID, new AdRequest.Builder().build());
-        } else {
-            webview1.loadUrl(getString(R.string.url4));
-
-        }
-    }
 
     @Override
     public void onRewardedVideoAdLoaded() {
@@ -916,7 +804,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         //rewardItem.getAmount() ile puanı alabilirsiniz.
         webview1.loadUrl(getUr);
 
-        _webSettings();
+        _webSettings(webview1);
 
     }
 

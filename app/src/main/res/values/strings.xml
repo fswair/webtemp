@@ -1,4 +1,5 @@
 <resources>
+    <!-- TODO Change App Name -->
     <string name="app_name" translatable="false">WebView Project</string>
     <string name="dosyagezgini">Dosya Gezgini</string>
     <string name="dosyasecici">Dosya Seçici</string>
@@ -6,8 +7,8 @@
     <string name="indstarted">İndirme Başladı..</string>
     <string name="indfinish">İndirme Sonlandı!</string>
 
-
-    <string name="url1" translatable="false">https://wpdoz.com</string>
+    <!-- TODO Change WebView Url's -->
+    <string name="url1" translatable="false">https://r10.net</string>
     <string name="url2" translatable="false">https://virustotal.com</string>
     <string name="url3" translatable="false">https://google.com/</string>
     <string name="url4" translatable="false">https://google.com/</string>
@@ -24,11 +25,6 @@
     <string name="description">\"Açıklama: \"</string>
     <string name="title_activity_settings" translatable="false">SettingsActivity</string>
 
-
-    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-3039242376817399/4775764161</string>
-    <string name="int_ad_unit_id" translatable="false">ca-app-pub-3039242376817399/4420540945</string>
-    <string name="rewarded_ad_unit_id" translatable="false">ca-app-pub-3039242376817399/4392620783</string>
-    <string name="app_ad_id" translatable="false">ca-app-pub-3039242376817399~8547681739</string>
 
     <!-- Preference Titles -->
 

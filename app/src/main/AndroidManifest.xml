@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- TODO Change Package Name -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.webdemo">
@@ -15,6 +16,8 @@
 
     use them for restore point
     -->
+    <!-- TODO Change App Label -->
+
     <application
         android:name=".services.DemoApplication"
         android:allowBackup="true"
@@ -37,11 +40,11 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <!-- TODO strings.xml app_ad_id -->
+        <!-- TODO APPLICATION_ID ADMOB -->
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="@string/app_ad_id" />
+            android:value="ca-app-pub-3039242376817399~8547681739" />
 
         <activity
             android:name=".activity.SplashScreen"
@@ -65,9 +68,9 @@
 
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <!-- TODO Host kısmına sitenizi yazın ve deeplink aktive olsun -->
+                <!-- TODO DEEPLİNK URL to host -->
                 <data
-                    android:host="https://deneme.com"
+                    android:host="r10"
                     android:scheme="https" />
             </intent-filter>
         </activity>
