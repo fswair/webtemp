@@ -1,6 +1,5 @@
 package com.webdemo.activity;
 
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
@@ -79,7 +78,6 @@ import java.util.Objects;
 import static android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
 import static com.google.android.material.bottomnavigation.BottomNavigationView.OnNavigationItemSelectedListener;
 
-
 /**
  * induiduel WebView projesidir.
  */
@@ -105,7 +103,6 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
     public static String appId = "ca-app-pub-3**~8547681739";
     public static String rewardedAdId = "ca-app-pub-3940256099942544/5224354917";
     public static String interstitialAdId = "ca-app-pub-3940256099942544/1033173712";
-
     public static RewardedVideoAd mRewardedVideoAd;
     public static InterstitialAd mInterstitialAd;
     public ValueCallback<Uri[]> uploadMessage;
@@ -369,13 +366,11 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
 
     }
 
-
     @RequiresApi(api = VERSION_CODES.M)
     private void initializeLogic() {
 
         _onCreate1();
     }
-
 
     @Override
     public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {

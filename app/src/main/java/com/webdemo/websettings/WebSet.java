@@ -29,16 +29,17 @@ public class WebSet extends Application {
         return WebSet.context;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public static void additionalSettings(WebView webView, Boolean bool) {
         webView.getSettings().setSupportMultipleWindows(bool);
-        //noinspection deprecation
+        webView.getSettings().setSupportMultipleWindows(true);
         webView.getSettings().setPluginState(WebSettings.PluginState.ON);
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(bool);
         webView.getSettings().setDefaultTextEncodingName("utf-8");
         webView.getSettings().setLoadWithOverviewMode(bool);
         webView.getSettings().setLoadsImagesAutomatically(bool);
-        webView.getSettings().setSafeBrowsingEnabled(bool);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            webView.getSettings().setSafeBrowsingEnabled(bool);
+        }
     }
 
 }
