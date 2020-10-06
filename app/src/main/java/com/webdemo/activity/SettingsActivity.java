@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
@@ -47,6 +48,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
             setTheme(R.style.PreferencesThemeL);
         }
         setContentView(R.layout.settings_activity);
+
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.settings, new SettingsFragment())
@@ -57,8 +59,11 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-
+        FrameLayout frameLayout = findViewById(R.id.settings);
+        mAdView = findViewById(R.id.adView);
         if (darkM) {
+            frameLayout.setBackgroundColor(getResources().getColor(R.color.koyugri));
+            mAdView.setBackgroundColor(getResources().getColor(R.color.koyugri));
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 Window window = getWindow();
                 window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -68,6 +73,8 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
             View decorView = getWindow().getDecorView();
             decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() & ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         } else {
+            frameLayout.setBackgroundColor(getResources().getColor(R.color.beyaz));
+            mAdView.setBackgroundColor(getResources().getColor(R.color.beyaz));
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(Color.parseColor("#ffffff"));
@@ -81,7 +88,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
             public void onInitializationComplete(InitializationStatus initializationStatus) {
             }
         });
-        mAdView = findViewById(R.id.adView);
+
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
     }

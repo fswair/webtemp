@@ -37,7 +37,6 @@ public class WebSet extends Application {
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(bool);
         webView.getSettings().setDefaultTextEncodingName("utf-8");
         webView.getSettings().setLoadWithOverviewMode(bool);
-        //webView.getSettings().setTextSize(WebSettings.TextSize.SMALLER);
         webView.getSettings().setLoadsImagesAutomatically(bool);
         webView.getSettings().setSafeBrowsingEnabled(bool);
     }

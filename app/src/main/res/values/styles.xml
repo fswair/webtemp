@@ -36,6 +36,7 @@
 
     <style name="PreferencesThemeD" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="background">@color/koyugri</item>
+        <item name="backgroundColor">@color/koyugri</item>
         <item name="android:textColor">#ffffff</item>
         <item name="android:textColorSecondary">#626262</item>
         <item name="colorPrimary">@color/colorPrimary</item>
