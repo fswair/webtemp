@@ -56,6 +56,8 @@ import com.google.android.gms.ads.reward.RewardItem;
 import com.google.android.gms.ads.reward.RewardedVideoAd;
 import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import com.webdemo.R;
 import com.webdemo.call.NoFrost;
 import com.webdemo.recycler.Person;
@@ -101,8 +103,8 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
     public static String getUr = "";
     //TODO ADMOB APP and AD ID's
     public static String appId = "ca-app-pub-3**~8547681739";
-    public static String rewardedAdId = "ca-app-pub-3**/4392620783";
-    public static String interstitialAdId = "ca-app-pub-3**/4420540945";
+    public static String rewardedAdId = "ca-app-pub-3940256099942544/5224354917";
+    public static String interstitialAdId = "ca-app-pub-3940256099942544/1033173712";
 
     public static RewardedVideoAd mRewardedVideoAd;
     public static InterstitialAd mInterstitialAd;
@@ -324,7 +326,14 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
         if (webview1.canGoBack()) {
             webview1.goBack();
         } else {
-            finishAffinity();
+            Snackbar snackbar = Snackbar.make(webview1, "Çıkmak istermisiniz?", BaseTransientBottomBar.LENGTH_LONG).setAction("Tamam", new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    finishAffinity();
+                }
+            });
+            snackbar.show();
+
         }
     }
 
@@ -509,16 +518,7 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
     }
 
     private void onLogic() {
-/*
-        try {
-            SecretKey secret = generateKey();
-            byte[] a = Ciphers.encryptMsg("String toEncrypt", secret);
 
-        } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | InvalidParameterSpecException | IllegalBlockSizeException | BadPaddingException | UnsupportedEncodingException | InvalidKeySpecException e) {
-            e.printStackTrace();
-        }
-
- */
         sharedPreferencesWebSettings();
         KeyboardVisibilityEvent.setEventListener(
                 MainActivity.this,
@@ -701,7 +701,6 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
         });
 
     }
-
 
     private void setDarkModeOn(Boolean bool) {
 
