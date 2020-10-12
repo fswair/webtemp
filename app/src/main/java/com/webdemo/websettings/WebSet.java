@@ -30,8 +30,7 @@ public class WebSet extends Application {
     }
 
     public static void additionalSettings(WebView webView, Boolean bool) {
-        webView.getSettings().setSupportMultipleWindows(bool);
-        webView.getSettings().setSupportMultipleWindows(true);
+
         webView.getSettings().setPluginState(WebSettings.PluginState.ON);
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(bool);
         webView.getSettings().setDefaultTextEncodingName("utf-8");
@@ -40,6 +39,10 @@ public class WebSet extends Application {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             webView.getSettings().setSafeBrowsingEnabled(bool);
         }
+    }
+
+    public static void advencedSettings(WebView webView, Boolean bool) {
+        webView.getSettings().setSupportMultipleWindows(bool);
     }
 
 }

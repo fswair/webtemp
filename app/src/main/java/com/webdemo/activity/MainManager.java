@@ -69,32 +69,36 @@ public abstract class MainManager extends AppCompatActivity {
         MainActivity.afa = prefs.getBoolean("afa", true);
         MainActivity.cache = prefs.getBoolean("cache", true);
         MainActivity.zoom = prefs.getBoolean("zoom", false);
+        MainActivity.swipe = prefs.getBoolean("swipe", true);
+        MainActivity.progress = prefs.getBoolean("progress", true);
         MainActivity.darkM = prefs.getBoolean("darkM", false);
 
     }
 
     @SuppressLint("SetJavaScriptEnabled")
     protected void _swipeToRefreshWeb(final WebView _webview, final View _view) {
-
-
         final SwipeRefreshLayout sr = new SwipeRefreshLayout(this);
-        sr.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
-        ((LinearLayout) _view).addView(sr);
-        ((LinearLayout) _view).removeView(_webview);
-        (_view).post(() -> sr.addView(_webview));
+        if (MainActivity.progress) {
 
-        _webview.canScrollVertically(View.FOCUS_DOWN);
+            sr.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+            ((LinearLayout) _view).addView(sr);
+            ((LinearLayout) _view).removeView(_webview);
+            (_view).post(() -> sr.addView(_webview));
 
-        _webview.setWebViewClient(new WebViewClient() {
-            public void onPageFinished(WebView view, String url) {
+            _webview.canScrollVertically(View.FOCUS_DOWN);
+
+            _webview.setWebViewClient(new WebViewClient() {
+                public void onPageFinished(WebView view, String url) {
+                    sr.setRefreshing(false);
+                }
+            });
+            sr.setOnRefreshListener(() -> {
                 sr.setRefreshing(false);
-            }
-        });
-        sr.setOnRefreshListener(() -> {
-            sr.setRefreshing(false);
-            _webview.reload();
-        });
-
+                _webview.reload();
+            });
+        } else {
+            ((LinearLayout) _view).removeView(sr);
+        }
 
     }
 

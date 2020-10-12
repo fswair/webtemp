@@ -23,15 +23,20 @@
     <string name="deva">Geliştrici Hesabı</string>
     <string name="morething">Daha Fazla</string>
     <string name="chooseemail">Email uygulaması seçin</string>
-    <string name="nav2">Virüs Total</string>
-    <string name="nav1">Anasayfa</string>
     <string name="rest">Yeniden başlatma gerekebilir</string>
-    <string name="nav5">Ayarlar</string>
-    <string name="nav3">Cool</string>
-    <string name="nav4">Repo</string>
     <string name="darkmode">Dark Mode</string>
     <string name="lowapi">Düşük Android Sürümü</string>
     <string name="downimg">Seçili Fotoğrafı İndir</string>
     <string name="saveimg">Fotoğrafı İndir</string>
+    <string name="swipe">Sayfa Yenile</string>
+    <string name="progress">Yükleme barı görünürlüğü</string>
+
+
+    <string name="nav1">Anasayfa</string>
+    <string name="nav2">Virüs Total</string>
+    <string name="nav3">Cool</string>
+    <string name="nav4">Repo</string>
+    <string name="nav5">Ayarlar</string>
+
 
 </resources>

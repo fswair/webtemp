@@ -153,7 +153,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
                 }
                 if (key.equals("gizlilik")) {
 
-                    String urr = getString(R.string.url5);
+                    String urr = getString(R.string.policy_link);
 
                     Intent a = new Intent(Intent.ACTION_VIEW);
                     a.setData(Uri.parse(urr));

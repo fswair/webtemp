@@ -96,7 +96,9 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
     public static boolean afa = true;
     public static boolean cache = true;
     public static boolean zoom = true;
+    public static boolean swipe = true;
     public static boolean darkM = false;
+    public static boolean progress = true;
 
     public static String getUr = "";
     //TODO ADMOB APP and AD ID's
@@ -187,15 +189,7 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
                 }
             };
 
-    public static void setDarkModeOnWeb(Boolean bool) {
 
-        if (bool) {
-            DarkMode.featureDark(webview1);
-        } else {
-            DarkMode.featureLight(webview1);
-        }
-
-    }
 
     @RequiresApi(api = VERSION_CODES.M)
     @Override
@@ -480,14 +474,32 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
 
     }
 
+    public static void setDarkModeOnWeb(Boolean bool) {
+
+        if (bool) {
+            DarkMode.featureDark(webview1);
+        } else {
+            DarkMode.featureLight(webview1);
+        }
+
+    }
+
+    private void setDarkModeOn(Boolean bool) {
+
+        if (bool) {
+            setTheme(R.style.AppThemeD);
+        } else {
+            setTheme(R.style.AppTheme);
+        }
+
+    }
+
     private void onLogic() {
 
         sharedPreferencesWebSettings();
         KeyboardVisibilityEvent.setEventListener(
                 MainActivity.this,
                 isOpen -> {
-                    // some code depending on keyboard visiblity status
-
 
                     if (isOpen) {
 
@@ -495,7 +507,7 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
 
                     } else {
 
-                        bottomNavigation.setVisibility(View.GONE);
+                        bottomNavigation.setVisibility(View.VISIBLE);
 
                     }
 
@@ -504,7 +516,6 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
 
         webview1.setWebChromeClient(new WebChromeClient() {
             // For 3.0+ Devices
-
 
             protected void openFileChooser(ValueCallback uploadMsg, String acceptType) {
                 mUploadMessage = uploadMsg;
@@ -549,18 +560,19 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
                 startActivityForResult(Intent.createChooser(i, getString(R.string.dosyasecici)), FILECHOOSER_RESULTCODE);
             }
 
-
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 ProgressBar pb = findViewById(R.id.progressbar);
-                if (100 == newProgress) {
-
-                    pb.setVisibility(View.GONE);
+                if (progress) {
+                    if (100 == newProgress) {
+                        pb.setVisibility(View.GONE);
+                    } else {
+                        pb.setVisibility(View.VISIBLE);
+                    }
+                    pb.setProgress(newProgress);
                 } else {
-                    pb.setVisibility(View.VISIBLE);
+                    pb.setVisibility(View.GONE);
                 }
-                pb.setProgress(newProgress);
-
 
             }
 
@@ -665,16 +677,6 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
 
     }
 
-    private void setDarkModeOn(Boolean bool) {
-
-        if (bool) {
-            setTheme(R.style.AppThemeD);
-        } else {
-            setTheme(R.style.AppTheme);
-        }
-
-    }
-
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 
@@ -719,6 +721,14 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
             zoom = sharedPreferences.getBoolean(key, false);
 
         }
+        if (key.equals("swipe")) {
+            swipe = sharedPreferences.getBoolean(key, true);
+            recreate();
+        }
+        if (key.equals("progress")) {
+            progress = sharedPreferences.getBoolean(key, true);
+
+        }
         if (key.equals("darkM")) {
             darkM = sharedPreferences.getBoolean(key, false);
             recreate();
@@ -726,7 +736,6 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
         webview1.reload();
         _webSettings(webview1);
     }
-
 
     @Override
     public void onRewardedVideoAdLoaded() {
