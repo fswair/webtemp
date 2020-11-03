@@ -17,7 +17,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
@@ -61,7 +60,6 @@ import com.webdemo.R;
 import com.webdemo.call.NoFrost;
 import com.webdemo.recycler.Person;
 import com.webdemo.recycler.SimpleRecyclerAdapter;
-import com.webdemo.request.RequestNetwork;
 import com.webdemo.websettings.DarkMode;
 import com.webdemo.websettings.ImageDownloader;
 import com.webdemo.websettings.WebSet;
@@ -113,12 +111,12 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
     private DrawerLayout _drawer;
     private FileChooserParams fileChooserParams;
     private ValueCallback mUploadMessage;
-    private ArrayList<String> location = new ArrayList<>();
-    private ArrayList<HashMap<String, Object>> getThis = new ArrayList<>();
+    private final ArrayList<String> location = new ArrayList<>();
+    private final ArrayList<HashMap<String, Object>> getThis = new ArrayList<>();
     private LinearLayout linear1;
     private ProgressBar progressbar;
-    private Intent intent = new Intent();
-    private Intent i = new Intent();
+    private final Intent intent = new Intent();
+    private final Intent i = new Intent();
     private View customview1;
     private int mOriginalSystemUiVisibility;
     private DrawerLayout drawer;
@@ -131,9 +129,9 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
     private RecyclerView recycler_view;
     private List<Person> person_list;
     private RatingBar ratingBar;
-    private boolean acs = false;
+    private final boolean acs = false;
     private int als = 0;
-    private OnNavigationItemSelectedListener navigationItemSelectedListener =
+    private final OnNavigationItemSelectedListener navigationItemSelectedListener =
             new OnNavigationItemSelectedListener() {
                 //BottomNavigationBar Hareketlerini dinler
                 @Override
@@ -224,8 +222,6 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
 
         SharedPreferences s = getSharedPreferences("s", AppCompatActivity.MODE_PRIVATE);
 
-        RequestNetwork rqey = new RequestNetwork(this);
-
         //drawer işlemleri
         _drawer = findViewById(R.id._drawer);
 
@@ -237,18 +233,7 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
         _drawer.addDrawerListener(_toggle);
         _toggle.syncState();
 
-        RequestNetwork.RequestListener _rqey_request_listener = new RequestNetwork.RequestListener() {
-            @Override
-            public void onResponse(String _param1, String _param2) {
 
-
-            }
-
-            @Override
-            public void onErrorResponse(String _param1, String _param2) {
-
-            }
-        };
 
         //drawer recyclerview
         recycler_view = findViewById(R.id.recycler_view);
