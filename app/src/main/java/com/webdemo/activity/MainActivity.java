@@ -56,6 +56,7 @@ import com.google.android.gms.ads.reward.RewardItem;
 import com.google.android.gms.ads.reward.RewardedVideoAd;
 import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.webdemo.R;
 import com.webdemo.call.NoFrost;
 import com.webdemo.recycler.Person;
@@ -112,12 +113,12 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
     private DrawerLayout _drawer;
     private FileChooserParams fileChooserParams;
     private ValueCallback mUploadMessage;
-    private ArrayList<String> location = new ArrayList<>();
-    private ArrayList<HashMap<String, Object>> getThis = new ArrayList<>();
+    private final ArrayList<String> location = new ArrayList<>();
+    private final ArrayList<HashMap<String, Object>> getThis = new ArrayList<>();
     private LinearLayout linear1;
     private ProgressBar progressbar;
-    private Intent intent = new Intent();
-    private Intent i = new Intent();
+    private final Intent intent = new Intent();
+    private final Intent i = new Intent();
     private View customview1;
     private int mOriginalSystemUiVisibility;
     private DrawerLayout drawer;
@@ -130,9 +131,9 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
     private RecyclerView recycler_view;
     private List<Person> person_list;
     private RatingBar ratingBar;
-    private boolean acs = false;
+    private final boolean acs = false;
     private int als = 0;
-    private OnNavigationItemSelectedListener navigationItemSelectedListener =
+    private final OnNavigationItemSelectedListener navigationItemSelectedListener =
             new OnNavigationItemSelectedListener() {
                 //BottomNavigationBar Hareketlerini dinler
                 @Override
@@ -384,7 +385,7 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
         bottomNavigation = findViewById(R.id.bottom_navigation);
         errorbind = findViewById(R.id.errorbind);
         errorbind.setVisibility(View.GONE);
-
+        FirebaseMessaging.getInstance().subscribeToTopic("ALL");
         initialize(_savedInstanceState);
         //Asked for allow permissions
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED || ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
