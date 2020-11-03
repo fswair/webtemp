@@ -1,5 +1,0 @@
-Manifest Kısmından Site Urlinizi ve Admob App IDsini değiştirin
-Admob Reklam Id'lerini MainActivity.java ve settings_activity.xml de değiştirin
-Firebaseden google-services.json adlı dosyayı alın ve projede ki örnek dosya ile değiştirin.
-Firebaseden Cloud Messaging kısmından alacağınız Tokenler ile açacağınız OneSignal projesinden verilen ID yi build.gradle de örnek id ile değiştirin
-

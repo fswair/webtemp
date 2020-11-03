@@ -23,14 +23,20 @@
     <string name="morething">More</string>
     <string name="deva">Developer Account</string>
     <string name="chooseemail">Choose an email application</string>
-    <string name="nav1">Main Page</string>
-    <string name="nav2">Virüs Total</string>
-    <string name="nav3">Cool</string>
-    <string name="rest">May need to restart</string>
-    <string name="nav5">Settings</string>
-    <string name="nav4">Repo</string>
     <string name="darkmode">Dark Mode</string>
     <string name="lowapi">Low Api Version</string>
     <string name="downimg">Download Image From Below</string>
     <string name="saveimg">Save - Download Image</string>
+    <string name="swipe">SwipeRefresh</string>
+    <string name="rest">May need to restart</string>
+    <string name="progress">Progress visibilty</string>
+
+
+    <string name="nav1">Main Page</string>
+    <string name="nav2">Virüs Total</string>
+    <string name="nav3">Cool</string>
+    <string name="nav4">Repo</string>
+    <string name="nav5">Settings</string>
+
+
 </resources>

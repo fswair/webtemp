@@ -32,7 +32,6 @@ public class NoFrost extends Application {
     }
 
     public static void giveLinksToHim(ArrayList<String> strr) {
-
         strr.add("twitter".concat(".com").trim().toLowerCase());
         strr.add("facebook".concat(".com").trim().toLowerCase());
         strr.add("youtube".concat(".com").trim().toLowerCase());

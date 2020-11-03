@@ -12,7 +12,7 @@
     <string name="url2" translatable="false">https://virustotal.com</string>
     <string name="url3" translatable="false">https://google.com/</string>
     <string name="url4" translatable="false">https://google.com/</string>
-    <string name="url5" translatable="false">https://google.com/</string>
+    <string name="policy_link" translatable="false">https://google.com/</string>
 
     <string name="nav1">Main Page</string>
     <string name="nav2">Second</string>
@@ -54,5 +54,7 @@
     <string name="lowapi">Düşük Android Sürümü</string>
     <string name="downimg">Download Image From Below</string>
     <string name="saveimg">Save - Download Image</string>
+    <string name="swipe">SwipeRefresh</string>
+    <string name="progress">Progress visibilty</string>
 
 </resources>

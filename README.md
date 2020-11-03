@@ -12,12 +12,12 @@
 **Quick Scope:**
 - App and AD ID's [MainActivity.java](https://github.com/induiduel/webtemp/blob/3609d9f9d6b202016eb9259c64e2f7e39345fbcb/app/src/main/java/com/webdemo/activity/MainActivity.java#L134)
 - AD ID [AndroidManifest.xml](https://github.com/induiduel/webtemp/blob/3609d9f9d6b202016eb9259c64e2f7e39345fbcb/app/src/main/AndroidManifest.xml#L47)
+- Banner AD ID [settings_activity.xml](https://github.com/induiduel/webtemp/blob/a582f99f9dc8be7af4394057faa8b5a12ea188ea/app/src/main/res/layout/settings_activity.xml#L19)
 - Onesignal ID [app/build.gradle](https://github.com/induiduel/webtemp/blob/3609d9f9d6b202016eb9259c64e2f7e39345fbcb/app/build.gradle#L35)
 - WebView Url's (4 needed) [strings.xml](https://github.com/induiduel/webtemp/blob/3609d9f9d6b202016eb9259c64e2f7e39345fbcb/app/src/main/res/values/strings.xml#L10)
 - Deeplink Url [AndroidManifest.xml](https://github.com/induiduel/webtemp/blob/3609d9f9d6b202016eb9259c64e2f7e39345fbcb/app/src/main/AndroidManifest.xml#L73)
 - Package Name [app/build.gradle](https://github.com/induiduel/webtemp/blob/c98eb45fb5afaf6f90e5d22a1e2c68d5bfc648c7/app/build.gradle#L41)
 - Package Name [AndroidManifest.xml](https://github.com/induiduel/webtemp/blob/c98eb45fb5afaf6f90e5d22a1e2c68d5bfc648c7/app/src/main/AndroidManifest.xml#L5)
-
 ```
 Do not forget to refactor directory names
 ```

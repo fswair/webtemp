@@ -23,7 +23,7 @@
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/app_icon"
-        android:label="APP_NAME"
+        android:label="@string/app_name"
         android:largeHeap="true"
         android:roundIcon="@mipmap/app_icon_round"
         android:theme="@style/AppThemeD"
@@ -70,13 +70,14 @@
             android:windowSoftInputMode="stateUnspecified">
 
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
 
+                <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
 
                 <!-- TODO DEEPLİNK URL to host -->
                 <data
-                    android:host="r10"
+                    android:host="*r10.net"
                     android:scheme="https" />
             </intent-filter>
         </activity>

@@ -9,7 +9,7 @@
             app:defaultValue="false"
             app:iconSpaceReserved="false"
             app:key="darkM"
-            app:isPreferenceVisible="false"
+            app:isPreferenceVisible="true"
             app:title="@string/darkmode" />
     </PreferenceCategory>
 
@@ -75,6 +75,16 @@
             app:iconSpaceReserved="false"
             app:key="cache"
             app:title="@string/cache" />
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:iconSpaceReserved="false"
+            app:key="swipe"
+            app:title="@string/swipe" />
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:iconSpaceReserved="false"
+            app:key="progress"
+            app:title="@string/progress" />
         <SwitchPreferenceCompat
             app:defaultValue="false"
             app:iconSpaceReserved="false"
