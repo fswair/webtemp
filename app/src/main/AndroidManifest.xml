@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- TODO Change Package Name -->
+<?xml version="1.0" encoding="utf-8"?><!-- TODO Change Package Name -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.webdemo">
@@ -10,11 +9,11 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!--
+        <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    android:launchMode="singleInstance"
-    android:alwaysRetainTaskState="true"
-
-    use them for restore point
+        Dosya indirme veya yükleme işlemi yoksa silebilirsiniz.
+        You can delete if there is no download or upload process
     -->
     <!-- TODO Change App Label -->
 
@@ -66,6 +65,7 @@
             <intent-filter>
 
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
 
