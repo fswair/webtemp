@@ -373,6 +373,10 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
 
         initialize(_savedInstanceState);
         //Asked for allow permissions
+        /*Dosya yükleme ve indirme işlemleriniz yoksa
+        * initializeLogic();
+        * kodu hariç tüm if koşulunu kaldırabilirsiniz
+        * */
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED || ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1000);
         } else {
