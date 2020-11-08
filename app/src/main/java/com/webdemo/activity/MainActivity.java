@@ -1,5 +1,6 @@
 package com.webdemo.activity;
 
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
@@ -16,7 +17,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
@@ -56,8 +56,6 @@ import com.google.android.gms.ads.reward.RewardItem;
 import com.google.android.gms.ads.reward.RewardedVideoAd;
 import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.snackbar.BaseTransientBottomBar;
-import com.google.android.material.snackbar.Snackbar;
 import com.webdemo.R;
 import com.webdemo.call.NoFrost;
 import com.webdemo.recycler.Person;
@@ -78,6 +76,7 @@ import java.util.Objects;
 import static android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
 import static com.google.android.material.bottomnavigation.BottomNavigationView.OnNavigationItemSelectedListener;
 
+
 /**
  * induiduel WebView projesidir.
  */
@@ -96,15 +95,14 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
     public static boolean afa = true;
     public static boolean cache = true;
     public static boolean zoom = true;
-    public static boolean swipe = true;
     public static boolean darkM = false;
-    public static boolean progress = true;
 
     public static String getUr = "";
     //TODO ADMOB APP and AD ID's
     public static String appId = "ca-app-pub-3**~8547681739";
-    public static String rewardedAdId = "ca-app-pub-3940256099942544/5224354917";
-    public static String interstitialAdId = "ca-app-pub-3940256099942544/1033173712";
+    public static String rewardedAdId = "ca-app-pub-3**/4392620783";
+    public static String interstitialAdId = "ca-app-pub-3**/4420540945";
+
     public static RewardedVideoAd mRewardedVideoAd;
     public static InterstitialAd mInterstitialAd;
     public ValueCallback<Uri[]> uploadMessage;
@@ -113,12 +111,12 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
     private DrawerLayout _drawer;
     private FileChooserParams fileChooserParams;
     private ValueCallback mUploadMessage;
-    private ArrayList<String> location = new ArrayList<>();
-    private ArrayList<HashMap<String, Object>> getThis = new ArrayList<>();
+    private final ArrayList<String> location = new ArrayList<>();
+    private final ArrayList<HashMap<String, Object>> getThis = new ArrayList<>();
     private LinearLayout linear1;
     private ProgressBar progressbar;
-    private Intent intent = new Intent();
-    private Intent i = new Intent();
+    private final Intent intent = new Intent();
+    private final Intent i = new Intent();
     private View customview1;
     private int mOriginalSystemUiVisibility;
     private DrawerLayout drawer;
@@ -131,9 +129,9 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
     private RecyclerView recycler_view;
     private List<Person> person_list;
     private RatingBar ratingBar;
-    private boolean acs = false;
+    private final boolean acs = false;
     private int als = 0;
-    private OnNavigationItemSelectedListener navigationItemSelectedListener =
+    private final OnNavigationItemSelectedListener navigationItemSelectedListener =
             new OnNavigationItemSelectedListener() {
                 //BottomNavigationBar Hareketlerini dinler
                 @Override
@@ -189,12 +187,182 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
                 }
             };
 
+    public static void setDarkModeOnWeb(Boolean bool) {
+
+        if (bool) {
+            DarkMode.featureDark(webview1);
+        } else {
+            DarkMode.featureLight(webview1);
+        }
+
+    }
 
 
     @RequiresApi(api = VERSION_CODES.M)
     @Override
+    public void onRequestPermissionsResult(int requestCode, @NotNull String[] permissions, @NotNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 1000) {
+            initializeLogic();
+        }
+    }
+
+    @SuppressLint("SetJavaScriptEnabled")
+    private void initialize(Bundle _savedInstanceState) {
+        Toolbar _toolbar = findViewById(R.id._toolbar);
+        setSupportActionBar(_toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        //Toolbar Geri Tuşu
+        _toolbar.setNavigationOnClickListener(_v -> onBackPressed());
+
+        linear1 = findViewById(R.id.linear1);
+        webview1 = findViewById(R.id.webview1);
+
+
+        SharedPreferences s = getSharedPreferences("s", AppCompatActivity.MODE_PRIVATE);
+
+        //drawer işlemleri
+        _drawer = findViewById(R.id._drawer);
+
+        ratingBar = findViewById(R.id.ratingbar);
+
+
+        _drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        ActionBarDrawerToggle _toggle = new ActionBarDrawerToggle(MainActivity.this, _drawer, _toolbar, R.string.app_name, R.string.app_name);
+        _drawer.addDrawerListener(_toggle);
+        _toggle.syncState();
+
+
+
+        //drawer recyclerview
+        recycler_view = findViewById(R.id.recycler_view);
+
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        layoutManager.scrollToPosition(0);
+
+        recycler_view.setLayoutManager(layoutManager);
+        //drawer menü ekleme
+        person_list = new ArrayList<>();
+
+        person_list.add(new Person("Anasayfa", R.drawable.ic_out_home));
+        person_list.add(new Person("Ayarlar", R.drawable.ic_out_settings));
+        person_list.add(new Person("Hakkında", R.drawable.ic_about));
+
+
+        SimpleRecyclerAdapter adapter_items = new SimpleRecyclerAdapter(person_list, (v, position) -> {
+
+            if (position == 0) {
+                bottomNavigation.setSelectedItemId(R.id.navigation_home);
+            }
+
+            if (position == 1) {
+                //link to settings
+                intent.setClass(getApplicationContext(), SettingsActivity.class);
+                startActivity(intent);
+
+            }
+
+
+        });
+        recycler_view.setHasFixedSize(true);
+
+        recycler_view.setAdapter(adapter_items);
+
+        recycler_view.setItemAnimator(new DefaultItemAnimator());
+
+
+    }
+
+
+    @RequiresApi(api = VERSION_CODES.M)
+    private void initializeLogic() {
+
+        _onCreate1();
+    }
+
+
+    @Override
+    public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
+        super.onCreateContextMenu(contextMenu, view, contextMenuInfo);
+
+        ImageDownloader.down(webview1, contextMenu, view, contextMenuInfo, getApplicationContext());
+
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+
+        if (requestCode == REQUEST_SELECT_FILE) {
+            if (uploadMessage == null) return;
+            uploadMessage.onReceiveValue(WebChromeClient.FileChooserParams.parseResult(resultCode, intent));
+            uploadMessage = null;
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (webview1.canGoBack()) {
+            webview1.goBack();
+        } else {
+            finishAffinity();
+        }
+    }
+
+    @Override
+    public void onStart() {
+
+        super.onStart();
+
+
+    }
+
+    @RequiresApi(api = VERSION_CODES.M)
+    private void _ui() {
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(Color.parseColor(getString(R.string.beyaz)));
+        getWindow().getDecorView().setSystemUiVisibility(SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
+
+    }
+
+    @RequiresApi(api = VERSION_CODES.M)
+    private void _onCreate1() {
+        _ui();
+        _swipeToRefreshWeb(webview1, linear1);
+        NoFrost.giveLinksToHim(strr);
+        onLogic();
+
+        bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
+
+    }
+
+    @RequiresApi(api = VERSION_CODES.M)
+    @Override
     protected void onCreate(Bundle _savedInstanceState) {
+
         super.onCreate(_savedInstanceState);
+        /*
+        Intent in = getIntent();
+        Uri data = in.getData();
+
+        used for deeplinking
+         */
+
+
+        Intent in = getIntent();
+        Uri data = in.getData();
+
 
         sharedPreferencesWebSettings();
         setDarkModeOn(darkM);
@@ -246,6 +414,7 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
 
         setupSharedPreferences();
 
+
         mInterstitialAd.setAdListener(new AdListener() {
             @SuppressWarnings("deprecation")
             @Override
@@ -257,12 +426,14 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
             @Override
             public void onAdOpened() {
 
+
             }
 
             @Override
             public void onAdLoaded() {
                 als++;
             }
+
 
             @Override
             public void onAdClosed() {
@@ -274,157 +445,6 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
             }
         });
 
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        Intent intent = getIntent();
-
-        if (getIntent().getAction() == Intent.ACTION_VIEW) {
-            Uri data = intent.getData();
-            if (data != null) {
-                Log.wtf("-----------------------------------------------------", String.valueOf(data));
-                webview1.loadUrl(data.toString());
-            }
-        }
-    }
-
-    @RequiresApi(api = VERSION_CODES.M)
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NotNull String[] permissions, @NotNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 1000) {
-
-            initializeLogic();
-        }
-    }
-
-    @SuppressLint("SetJavaScriptEnabled")
-    private void initialize(Bundle _savedInstanceState) {
-        Toolbar _toolbar = findViewById(R.id._toolbar);
-        setSupportActionBar(_toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        //Toolbar Geri Tuşu
-        _toolbar.setNavigationOnClickListener(_v -> onBackPressed());
-
-        linear1 = findViewById(R.id.linear1);
-        webview1 = findViewById(R.id.webview1);
-
-        SharedPreferences s = getSharedPreferences("s", AppCompatActivity.MODE_PRIVATE);
-
-        //drawer işlemleri
-        _drawer = findViewById(R.id._drawer);
-
-        ratingBar = findViewById(R.id.ratingbar);
-
-        _drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-        ActionBarDrawerToggle _toggle = new ActionBarDrawerToggle(MainActivity.this, _drawer, _toolbar, R.string.app_name, R.string.app_name);
-        _drawer.addDrawerListener(_toggle);
-        _toggle.syncState();
-        //drawer recyclerview
-        recycler_view = findViewById(R.id.recycler_view);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        layoutManager.scrollToPosition(0);
-        recycler_view.setLayoutManager(layoutManager);
-        //drawer menü ekleme
-        person_list = new ArrayList<>();
-        person_list.add(new Person("Anasayfa", R.drawable.ic_out_home));
-        person_list.add(new Person("Ayarlar", R.drawable.ic_out_settings));
-        person_list.add(new Person("Hakkında", R.drawable.ic_about));
-
-        SimpleRecyclerAdapter adapter_items = new SimpleRecyclerAdapter(person_list, (v, position) -> {
-
-            if (position == 0) {
-                bottomNavigation.setSelectedItemId(R.id.navigation_home);
-            }
-
-            if (position == 1) {
-                //link to settings
-                intent.setClass(getApplicationContext(), SettingsActivity.class);
-                startActivity(intent);
-
-            }
-
-
-        });
-        recycler_view.setHasFixedSize(true);
-
-        recycler_view.setAdapter(adapter_items);
-
-        recycler_view.setItemAnimator(new DefaultItemAnimator());
-
-
-    }
-
-    @RequiresApi(api = VERSION_CODES.M)
-    private void initializeLogic() {
-
-        _onCreate1();
-    }
-
-    @Override
-    public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
-        super.onCreateContextMenu(contextMenu, view, contextMenuInfo);
-
-        ImageDownloader.down(webview1, contextMenu, view, contextMenuInfo, getApplicationContext());
-
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        super.onActivityResult(requestCode, resultCode, intent);
-
-        if (requestCode == REQUEST_SELECT_FILE) {
-            if (uploadMessage == null) return;
-            uploadMessage.onReceiveValue(WebChromeClient.FileChooserParams.parseResult(resultCode, intent));
-            uploadMessage = null;
-        }
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (webview1.canGoBack()) {
-            webview1.goBack();
-        } else {
-            Snackbar snackbar = Snackbar.make(webview1, "Çıkmak istermisiniz?", BaseTransientBottomBar.LENGTH_LONG).setAction("Tamam", new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    finishAffinity();
-                }
-            });
-            snackbar.show();
-
-        }
-    }
-
-    @Override
-    public void onStart() {
-
-        super.onStart();
-    }
-
-    @RequiresApi(api = VERSION_CODES.M)
-    private void _ui() {
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().hide();
-        }
-        Window window = getWindow();
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(Color.parseColor(getString(R.string.beyaz)));
-        getWindow().getDecorView().setSystemUiVisibility(SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-    }
-
-    @RequiresApi(api = VERSION_CODES.M)
-    private void _onCreate1() {
-        _ui();
-        _swipeToRefreshWeb(webview1, linear1);
-        NoFrost.giveLinksToHim(strr);
-        onLogic();
-        bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
     }
 
     private void errorResponse(boolean check) {
@@ -474,32 +494,23 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
 
     }
 
-    public static void setDarkModeOnWeb(Boolean bool) {
-
-        if (bool) {
-            DarkMode.featureDark(webview1);
-        } else {
-            DarkMode.featureLight(webview1);
-        }
-
-    }
-
-    private void setDarkModeOn(Boolean bool) {
-
-        if (bool) {
-            setTheme(R.style.AppThemeD);
-        } else {
-            setTheme(R.style.AppTheme);
-        }
-
-    }
-
     private void onLogic() {
+/*
+        try {
+            SecretKey secret = generateKey();
+            byte[] a = Ciphers.encryptMsg("String toEncrypt", secret);
 
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | InvalidParameterSpecException | IllegalBlockSizeException | BadPaddingException | UnsupportedEncodingException | InvalidKeySpecException e) {
+            e.printStackTrace();
+        }
+
+ */
         sharedPreferencesWebSettings();
         KeyboardVisibilityEvent.setEventListener(
                 MainActivity.this,
                 isOpen -> {
+                    // some code depending on keyboard visiblity status
+
 
                     if (isOpen) {
 
@@ -507,7 +518,7 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
 
                     } else {
 
-                        bottomNavigation.setVisibility(View.VISIBLE);
+                        bottomNavigation.setVisibility(View.GONE);
 
                     }
 
@@ -516,6 +527,7 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
 
         webview1.setWebChromeClient(new WebChromeClient() {
             // For 3.0+ Devices
+
 
             protected void openFileChooser(ValueCallback uploadMsg, String acceptType) {
                 mUploadMessage = uploadMsg;
@@ -560,19 +572,18 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
                 startActivityForResult(Intent.createChooser(i, getString(R.string.dosyasecici)), FILECHOOSER_RESULTCODE);
             }
 
+
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 ProgressBar pb = findViewById(R.id.progressbar);
-                if (progress) {
-                    if (100 == newProgress) {
-                        pb.setVisibility(View.GONE);
-                    } else {
-                        pb.setVisibility(View.VISIBLE);
-                    }
-                    pb.setProgress(newProgress);
-                } else {
+                if (100 == newProgress) {
+
                     pb.setVisibility(View.GONE);
+                } else {
+                    pb.setVisibility(View.VISIBLE);
                 }
+                pb.setProgress(newProgress);
+
 
             }
 
@@ -677,6 +688,17 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
 
     }
 
+
+    private void setDarkModeOn(Boolean bool) {
+
+        if (bool) {
+            setTheme(R.style.AppThemeD);
+        } else {
+            setTheme(R.style.AppTheme);
+        }
+
+    }
+
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 
@@ -721,14 +743,6 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
             zoom = sharedPreferences.getBoolean(key, false);
 
         }
-        if (key.equals("swipe")) {
-            swipe = sharedPreferences.getBoolean(key, true);
-            recreate();
-        }
-        if (key.equals("progress")) {
-            progress = sharedPreferences.getBoolean(key, true);
-
-        }
         if (key.equals("darkM")) {
             darkM = sharedPreferences.getBoolean(key, false);
             recreate();
@@ -736,6 +750,7 @@ public class MainActivity extends MainManager implements SharedPreferences.OnSha
         webview1.reload();
         _webSettings(webview1);
     }
+
 
     @Override
     public void onRewardedVideoAdLoaded() {
