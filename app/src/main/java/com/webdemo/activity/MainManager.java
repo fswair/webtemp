@@ -69,8 +69,6 @@ public abstract class MainManager extends AppCompatActivity {
         MainActivity.afa = prefs.getBoolean("afa", true);
         MainActivity.cache = prefs.getBoolean("cache", true);
         MainActivity.zoom = prefs.getBoolean("zoom", false);
-        MainActivity.swipe = prefs.getBoolean("swipe", true);
-        MainActivity.progress = prefs.getBoolean("progress", true);
         MainActivity.darkM = prefs.getBoolean("darkM", false);
 
     }
@@ -78,7 +76,7 @@ public abstract class MainManager extends AppCompatActivity {
     @SuppressLint("SetJavaScriptEnabled")
     protected void _swipeToRefreshWeb(final WebView _webview, final View _view) {
         final SwipeRefreshLayout sr = new SwipeRefreshLayout(this);
-        if (MainActivity.progress) {
+
 
             sr.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
             ((LinearLayout) _view).addView(sr);
@@ -96,9 +94,7 @@ public abstract class MainManager extends AppCompatActivity {
                 sr.setRefreshing(false);
                 _webview.reload();
             });
-        } else {
-            ((LinearLayout) _view).removeView(sr);
-        }
+
 
     }
 
