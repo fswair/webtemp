@@ -77,6 +77,12 @@
                 <data
                     android:host="*r10.net"
                     android:scheme="https" />
+
+                <!-- Change scheme if needed
+                    <data
+                    android:host="*r10.net"
+                    android:scheme="http" />
+                    -->
             </intent-filter>
         </activity>
 
